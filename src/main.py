@@ -33,7 +33,7 @@ async def process_region(session, region, queue, tier, division, max_players=25,
             save_match(match_id, region, details, timeline)
             save_player_match(puuid, match_id)
 
-            print(f"[{region}] Saved {match_id} for {puuid}")
+            #print(f"[{region}] Saved {match_id} for {puuid}")
 
 
 
@@ -70,9 +70,8 @@ async def process_all_tiers(session, region, max_players=25, max_matches=20):
                                  max_players=max_players, max_matches=max_matches)
 
             # save checkpoint
-            progress.setdefault(region, {}).setdefault(tier, []).append(division)
-            save_progress(progress)
-            print(f"💾 Saved checkpoint after {region} {tier} {division}")
+            save_progress({region: {tier: [division]}})
+            print(f"Saved checkpoint after {region} {tier} {division}")
 
     # Masters+
     for special_tier, getter in [

@@ -32,3 +32,6 @@ build/
 
 # DB
 riot_data.db
+
+# progress
+progress.json
