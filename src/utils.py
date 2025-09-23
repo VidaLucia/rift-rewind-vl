@@ -35,3 +35,4 @@ def save_progress(update):
 
     with open(PROGRESS_FILE, "w") as f:
         json.dump(existing, f, indent=2)
+
