@@ -62,7 +62,7 @@ async def process_region(session, region, queue, tier, division, max_players=10,
                     raise
 
     elapsed = time.perf_counter() - start_time
-    print(f"⏱️ Finished {region} {tier} {division} in {elapsed:.2f} seconds")
+    print(f" Finished {region} {tier} {division} in {elapsed:.2f} seconds")
 
 
 async def run_pipeline():
@@ -143,7 +143,7 @@ async def process_all_tiers(session, region, max_players=25, max_matches=20, wit
 
                     save_match(match_id, region, details, timeline)
                     save_player_match(puuid, match_id)
-                    print(f"[{region}] Saved {match_id} for {puuid}")
+                    #print(f"[{region}] Saved {match_id} for {puuid}")
 
                 except Exception as e:
                     if "404" in str(e):
@@ -153,12 +153,12 @@ async def process_all_tiers(session, region, max_players=25, max_matches=20, wit
                         raise
 
         elapsed = time.perf_counter() - start_time
-        print(f"⏱️ Finished {region} {special_tier} in {elapsed:.2f} seconds")
+        #print(f"Finished {region} {special_tier} in {elapsed:.2f} seconds")
 
         progress = load_progress()
         progress.setdefault(region, {})[special_tier] = ["I"]
         save_progress(progress)
-        print(f"Saved checkpoint after {region} {special_tier}")
+        #print(f"Saved checkpoint after {region} {special_tier}")
 
 
 def update_region_progress(region, calls=0, matches=0, players=0):

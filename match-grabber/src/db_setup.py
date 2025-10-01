@@ -14,7 +14,7 @@ def init_db():
     )
     """)
 
-    # League tables
+    # Leagues
     c.execute("""
     CREATE TABLE IF NOT EXISTS leagues (
         league_id TEXT,
@@ -26,6 +26,7 @@ def init_db():
     )
     """)
 
+    # League Entries
     c.execute("""
     CREATE TABLE IF NOT EXISTS league_entries (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,11 +44,11 @@ def init_db():
         hot_streak BOOLEAN,
         fresh_blood BOOLEAN,
         mini_series TEXT, -- JSON MiniSeriesDTO
-    FOREIGN KEY (league_id, region) REFERENCES leagues(league_id, region)
-)
+        FOREIGN KEY (league_id, region) REFERENCES leagues(league_id, region)
+    )
     """)
 
-    # Matches metadata
+    # Matches (MatchDto: metadata + info root)
     c.execute("""
     CREATE TABLE IF NOT EXISTS matches (
         match_id TEXT PRIMARY KEY,
@@ -56,7 +57,10 @@ def init_db():
         game_creation INTEGER,
         game_duration INTEGER,
         game_end_timestamp INTEGER,
+        game_start_timestamp INTEGER,
+        end_of_game_result TEXT,
         game_mode TEXT,
+        game_name TEXT,
         game_type TEXT,
         game_version TEXT,
         map_id INT,
@@ -66,7 +70,7 @@ def init_db():
     )
     """)
 
-    # Participants
+    # Participants (ParticipantDto)
     c.execute("""
     CREATE TABLE IF NOT EXISTS participants (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -74,8 +78,14 @@ def init_db():
         puuid TEXT NOT NULL,
         summoner_id TEXT,
         summoner_name TEXT,
+        riot_id_game_name TEXT,
+        riot_id_tagline TEXT,
+        summoner_level INT,
+        profile_icon INT,
         champion_id INT,
         champion_name TEXT,
+        champ_level INT,
+        champ_experience INT,
         team_id INT,
         participant_id INT,
         role TEXT,
@@ -90,27 +100,46 @@ def init_db():
         total_damage_dealt INT,
         total_damage_dealt_to_champions INT,
         total_damage_taken INT,
+        damage_self_mitigated INT,
         vision_score INT,
         wards_placed INT,
         wards_killed INT,
-        items TEXT,   -- JSON
-        spells TEXT,  -- JSON
-        perks TEXT,   -- JSON
-        challenges TEXT, -- JSON
+        detector_wards_placed INT,
+        double_kills INT,
+        triple_kills INT,
+        quadra_kills INT,
+        penta_kills INT,
+        unreal_kills INT,
+        baron_kills INT,
+        dragon_kills INT,
+        turret_kills INT,
+        inhibitor_kills INT,
+        item0 INT,
+        item1 INT,
+        item2 INT,
+        item3 INT,
+        item4 INT,
+        item5 INT,
+        item6 INT,
+        spells TEXT,       -- JSON: summoner1Id/summoner2Id + casts
+        perks TEXT,        -- JSON: perks + perk stats
+        challenges TEXT,   -- JSON: ALL challenge metrics (huge)
+        missions TEXT,     -- JSON: MissionsDto
+        items JSON,        -- JSON inventory if needed
         FOREIGN KEY(match_id) REFERENCES matches(match_id),
         FOREIGN KEY(puuid) REFERENCES players(puuid)
     )
     """)
 
-    # Teams
+    # Teams (TeamDto + ObjectivesDto + Bans)
     c.execute("""
     CREATE TABLE IF NOT EXISTS teams (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         match_id TEXT,
         team_id INT,
         win BOOLEAN,
-        bans TEXT,       -- JSON of bans
-        objectives TEXT, -- JSON of objectives (baron, dragon, tower, etc.)
+        bans TEXT,        -- JSON BanDto list
+        objectives TEXT,  -- JSON ObjectivesDto
         FOREIGN KEY(match_id) REFERENCES matches(match_id)
     )
     """)
@@ -138,7 +167,7 @@ def init_db():
     )
     """)
 
-    # Link table
+    # Player-Match Link
     c.execute("""
     CREATE TABLE IF NOT EXISTS player_matches (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
