@@ -32,6 +32,8 @@ build/
 
 # DB
 riot_data.db
+normalized_matches.csv
+players_matches.json
 *.db
 # progress
 progress.json

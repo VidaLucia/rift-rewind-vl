@@ -73,7 +73,7 @@ async def run_pipeline():
         await asyncio.gather(*tasks)
 
 
-async def process_all_tiers(session, region, max_players=1, max_matches=20, with_timeline=False):
+async def process_all_tiers(session, region, max_players=1, max_matches=1, with_timeline=False):
     progress = load_progress()
     if region not in progress:
         progress[region] = {}
