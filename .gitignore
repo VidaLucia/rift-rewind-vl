@@ -35,5 +35,6 @@ riot_data.db
 normalized_matches.csv
 players_matches.json
 *.db
+*.csv
 # progress
 progress.json

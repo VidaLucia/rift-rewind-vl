@@ -35,7 +35,7 @@ def save_league(league_data, region):
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             league_id,
-            region,  # <-- include region
+            region,
             entry.get("puuid"),
             entry.get("summonerId"),
             entry.get("summonerName"),
@@ -52,6 +52,7 @@ def save_league(league_data, region):
 
     conn.commit()
     conn.close()
+
 # =========================
 # PLAYER STORAGE
 # =========================
@@ -102,15 +103,23 @@ def save_match(match_id, region, details, timeline):
         perks = json.dumps(p.get("perks", {}))
         challenges = json.dumps(p.get("challenges", {}))
 
+        total_minions = p.get("totalMinionsKilled", 0) or 0
+        neutral_minions = p.get("neutralMinionsKilled", 0) or 0
+        enemy_jungle = p.get("enemyJungleMonsterKills", 0) or 0
+        champ_level = p.get("champLevel", 0) or 0
+        cs_total = total_minions + neutral_minions
+
         c.execute("""
         INSERT INTO participants
         (match_id, puuid, summoner_id, summoner_name, champion_id, champion_name,
-         team_id, participant_id, role, lane, team_position, win,
-         kills, deaths, assists, gold_earned, gold_spent,
-         total_damage_dealt, total_damage_dealt_to_champions,
-         total_damage_taken, vision_score, wards_placed, wards_killed,
-         items, spells, perks, challenges)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        team_id, participant_id, role, lane, team_position, win,
+        kills, deaths, assists, gold_earned, gold_spent,
+        total_damage_dealt, total_damage_dealt_to_champions,
+        total_damage_taken, vision_score, wards_placed, wards_killed,
+        total_minions_killed, neutral_minions_killed, enemy_jungle_monster_kills,
+        cs, champ_level,
+        items, spells, perks, challenges)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             match_id,
             p.get("puuid"),
@@ -135,12 +144,16 @@ def save_match(match_id, region, details, timeline):
             p.get("visionScore"),
             p.get("wardsPlaced"),
             p.get("wardsKilled"),
+            total_minions,
+            neutral_minions,
+            enemy_jungle,
+            cs_total,
+            champ_level,
             items,
             spells,
             perks,
             challenges
         ))
-
     # Insert teams
     for t in info.get("teams", []):
         c.execute("""
@@ -154,7 +167,7 @@ def save_match(match_id, region, details, timeline):
             json.dumps(t.get("objectives", {}))
         ))
 
-    # Insert timeline frames + events
+    # Insert timeline data (optional)
     if timeline:
         frames = timeline.get("info", {}).get("frames", [])
         for f in frames:

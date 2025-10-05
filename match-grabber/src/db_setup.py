@@ -68,39 +68,44 @@ def init_db():
 
     # Participants
     c.execute("""
-    CREATE TABLE IF NOT EXISTS participants (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        match_id TEXT NOT NULL,
-        puuid TEXT NOT NULL,
-        summoner_id TEXT,
-        summoner_name TEXT,
-        champion_id INT,
-        champion_name TEXT,
-        team_id INT,
-        participant_id INT,
-        role TEXT,
-        lane TEXT,
-        team_position TEXT,
-        win BOOLEAN,
-        kills INT,
-        deaths INT,
-        assists INT,
-        gold_earned INT,
-        gold_spent INT,
-        total_damage_dealt INT,
-        total_damage_dealt_to_champions INT,
-        total_damage_taken INT,
-        vision_score INT,
-        wards_placed INT,
-        wards_killed INT,
-        items TEXT,   -- JSON
-        spells TEXT,  -- JSON
-        perks TEXT,   -- JSON
-        challenges TEXT, -- JSON
-        FOREIGN KEY(match_id) REFERENCES matches(match_id),
-        FOREIGN KEY(puuid) REFERENCES players(puuid)
-    )
-    """)
+CREATE TABLE IF NOT EXISTS participants (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    match_id TEXT NOT NULL,
+    puuid TEXT NOT NULL,
+    summoner_id TEXT,
+    summoner_name TEXT,
+    champion_id INT,
+    champion_name TEXT,
+    team_id INT,
+    participant_id INT,
+    role TEXT,
+    lane TEXT,
+    team_position TEXT,
+    win BOOLEAN,
+    kills INT,
+    deaths INT,
+    assists INT,
+    gold_earned INT,
+    gold_spent INT,
+    total_damage_dealt INT,
+    total_damage_dealt_to_champions INT,
+    total_damage_taken INT,
+    vision_score INT,
+    wards_placed INT,
+    wards_killed INT,
+    total_minions_killed INT,       
+    neutral_minions_killed INT,
+    enemy_jungle_monster_kills INT,     
+    cs INT,                         
+    champ_level INT,                
+    items TEXT,                     
+    spells TEXT,                    
+    perks TEXT,                     
+    challenges TEXT,                
+    FOREIGN KEY(match_id) REFERENCES matches(match_id),
+    FOREIGN KEY(puuid) REFERENCES players(puuid)
+)
+""")
 
     # Teams
     c.execute("""

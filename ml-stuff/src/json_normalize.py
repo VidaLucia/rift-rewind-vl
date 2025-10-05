@@ -34,7 +34,7 @@ def load_json_to_df(json_path):
                 "gold_earned": match.get("gold_earned", 0),
                 "vision_score": match.get("vision_score", 0),
                 "damage": match.get("total_damage_dealt_to_champions", 0),
-                "cs": match.get("total_damage_dealt", 0),  # can replace with minionsKilled+neutral
+                "cs": match.get("total_minions_killed", 0) + match.get("total_neutral_minions_killed", 0),
                 "win": match.get("win", 0),
                 "duration": match.get("game_duration", 0),
                 "role": match.get("resolved_position"),
