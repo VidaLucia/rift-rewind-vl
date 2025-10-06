@@ -1,6 +1,7 @@
 import asyncio
 import aiohttp
 import time
+import traceback
 from riot_client import (
     get_puuids_from_rank,
     get_matches,
@@ -16,12 +17,51 @@ from utils import load_progress, save_progress
 
 region_stats = {}
 
+
+# PATCH: Safe API wrapper (handles 404, 405, 429, etc.)
+
+async def safe_request(coro, retries=5, delay=3, context=""):
+    """Retry async Riot API calls safely, handle common errors."""
+    for attempt in range(1, retries + 1):
+        try:
+            return await coro
+        except aiohttp.ClientResponseError as e:
+            if e.status in (404, 405):
+                print(f"[{context}] Skipping ({e.status})")
+                return None
+            elif e.status == 429:
+                wait = delay * attempt
+                print(f"[{context}] Rate limited (429), sleeping {wait}s")
+                await asyncio.sleep(wait)
+            else:
+                print(f"[{context}] HTTP {e.status}: {e.message}")
+                await asyncio.sleep(delay * attempt)
+        except (aiohttp.ClientOSError, aiohttp.ServerTimeoutError, asyncio.TimeoutError):
+            print(f"[{context}] Timeout or connection error, retry {attempt}/{retries}")
+            await asyncio.sleep(delay * attempt)
+        except Exception as e:
+            print(f"[{context}] Unexpected error: {type(e).__name__}: {e}")
+            print(traceback.format_exc(limit=1))
+            await asyncio.sleep(delay * attempt)
+    print(f"[{context}]  Gave up after {retries} retries.")
+    return None
+
+
+# REGION PROCESSOR
+
 async def process_region(session, region, queue, tier, division, max_players=10, max_matches=20, with_timeline=False):
     start_time = time.perf_counter()
-    print(f"\n=== Processing {region} {tier} {division} ===")
+    print(f"\n Processing {region} {tier} {division} ")
 
-    league_data = await get_puuids_from_rank(session, region, queue, tier, division)
+    league_data = await safe_request(
+        get_puuids_from_rank(session, region, queue, tier, division),
+        context=f"{region} {tier} {division}"
+    )
     update_region_progress(region, calls=1)
+
+    if not league_data:
+        print(f"[{region}]  Skipping {tier} {division} (no data)")
+        return
 
     if isinstance(league_data, dict) and "entries" in league_data:
         save_league(league_data, region)
@@ -32,39 +72,42 @@ async def process_region(session, region, queue, tier, division, max_players=10,
     players = players[:max_players]
 
     for player in players:
-        puuid = player["puuid"]
-        save_player(puuid, region)
+        puuid = player.get("puuid")
+        if not puuid:
+            continue
 
-        matches = await get_matches(session, puuid, region)
+        save_player(puuid, region)
+        matches = await safe_request(get_matches(session, puuid, region), context=f"{region} matches {puuid[:8]}")
+        if not matches:
+            continue
+
         for match_id in matches[:max_matches]:
             try:
-                details = await get_match_details(session, match_id, region)
+                details = await safe_request(get_match_details(session, match_id, region), context=f"{region} {match_id}")
+                if not details:
+                    continue
 
                 timeline = None
                 if with_timeline:
-                    try:
-                        timeline = await get_match_timeline(session, match_id, region)
-                    except Exception as e:
-                        if "404" in str(e):
-                            print(f"[{region}] Timeline missing for {match_id} (skipping)")
-                        else:
-                            raise
+                    timeline = await safe_request(get_match_timeline(session, match_id, region), context=f"{region} timeline {match_id}")
 
                 save_match(match_id, region, details, timeline)
                 save_player_match(puuid, match_id)
-                print(f"[{region}] Saved {match_id} for {puuid}")
+                #print(f"[{region}] Saved {match_id} for {puuid[:8]}")
+
+                await asyncio.sleep(0.3)  # gentle cooldown between matches
 
             except Exception as e:
-                if "404" in str(e):
-                    print(f"[{region}] Match {match_id} not found (skipping)")
-                    continue
-                else:
-                    raise
+                print(f"[{region}]  Error on match {match_id}: {e}")
+                await asyncio.sleep(1)
 
     elapsed = time.perf_counter() - start_time
     print(f" Finished {region} {tier} {division} in {elapsed:.2f} seconds")
+    await asyncio.sleep(2)  # cooldown after each division
 
 
+
+# RUN PIPELINE
 async def run_pipeline():
     regions = ["na1", "euw1", "kr"]
 
@@ -73,7 +116,9 @@ async def run_pipeline():
         await asyncio.gather(*tasks)
 
 
-async def process_all_tiers(session, region, max_players=1, max_matches=1, with_timeline=False):
+
+# PROCESS ALL TIERS
+async def process_all_tiers(session, region, max_players=10, max_matches=20, with_timeline=False):
     progress = load_progress()
     if region not in progress:
         progress[region] = {}
@@ -115,52 +160,50 @@ async def process_all_tiers(session, region, max_players=1, max_matches=1, with_
         if special_tier in progress[region]:
             print(f"Skipping {region} {special_tier} (already done)")
             continue
-
+ 
         start_time = time.perf_counter()
-        print(f"\n=== Processing {region} {special_tier} ===")
-        data = await getter(session, region, "RANKED_SOLO_5x5")
+        print(f"\n Processing {region} {special_tier} ")
+
+        data = await safe_request(getter(session, region, "RANKED_SOLO_5x5"), context=f"{region} {special_tier}")
+        if not data:
+            continue
 
         save_league(data, region)
 
         players = data.get("entries", [])[:max_players]
         for player in players:
-            puuid = player["puuid"]
+            puuid = player.get("puuid")
+            if not puuid:
+                continue
+
             save_player(puuid, region)
-            matches = await get_matches(session, puuid, region)
+            matches = await safe_request(get_matches(session, puuid, region), context=f"{region} master-matches {puuid[:8]}")
+            if not matches:
+                continue
+
             for match_id in matches[:max_matches]:
-                try:
-                    details = await get_match_details(session, match_id, region)
+                details = await safe_request(get_match_details(session, match_id, region), context=f"{region} {match_id}")
+                if not details:
+                    continue
 
-                    timeline = None
-                    if with_timeline:
-                        try:
-                            timeline = await get_match_timeline(session, match_id, region)
-                        except Exception as e:
-                            if "404" in str(e):
-                                print(f"[{region}] Timeline missing for {match_id} (skipping)")
-                            else:
-                                raise
+                timeline = None
+                if with_timeline:
+                    timeline = await safe_request(get_match_timeline(session, match_id, region), context=f"{region} timeline {match_id}")
 
-                    save_match(match_id, region, details, timeline)
-                    save_player_match(puuid, match_id)
-                    #print(f"[{region}] Saved {match_id} for {puuid}")
+                save_match(match_id, region, details, timeline)
+                save_player_match(puuid, match_id)
 
-                except Exception as e:
-                    if "404" in str(e):
-                        print(f"[{region}] Match {match_id} not found (skipping)")
-                        continue
-                    else:
-                        raise
+                await asyncio.sleep(0.3)
 
         elapsed = time.perf_counter() - start_time
-        #print(f"Finished {region} {special_tier} in {elapsed:.2f} seconds")
+        print(f"Finished {region} {special_tier} in {elapsed:.2f} seconds")
 
         progress = load_progress()
         progress.setdefault(region, {})[special_tier] = ["I"]
         save_progress(progress)
-        #print(f"Saved checkpoint after {region} {special_tier}")
+        await asyncio.sleep(2)
 
-
+# PROGRESS TRACKER
 def update_region_progress(region, calls=0, matches=0, players=0):
     if region not in region_stats:
         region_stats[region] = {"calls": 0, "matches": 0, "players": 0}
@@ -172,7 +215,7 @@ def update_region_progress(region, calls=0, matches=0, players=0):
     print(f"[{region}] Progress -> {stats['players']} players, "
           f"{stats['matches']} matches, {stats['calls']} API calls")
 
-
+# ENTRY POINT
 if __name__ == "__main__":
     init_db()
     asyncio.run(run_pipeline())

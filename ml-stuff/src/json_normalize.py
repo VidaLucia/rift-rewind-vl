@@ -4,15 +4,18 @@ import os
 
 
 def safe_json_parse(raw):
-    """Parse JSON string safely, return {} if fails."""
+    """Parse JSON string safely, return {} or [] if fails."""
     if isinstance(raw, str):
         try:
             return json.loads(raw)
         except json.JSONDecodeError:
+            # Try to detect if it's a list or dict structure
+            if raw.strip().startswith("["):
+                return []
             return {}
-    elif isinstance(raw, dict):
+    elif isinstance(raw, (dict, list)):
         return raw
-    return {}
+    return {} if raw is None else []
 
 
 def load_json_to_df(json_path):
@@ -20,10 +23,17 @@ def load_json_to_df(json_path):
         data = json.load(f)
 
     rows = []
-    # Structure: {puuid: {"matches": [match1, match2, ...]}}
+    # Structure: {puuid: {"matches": [match1, match2, ]}}
     for puuid, pdata in data.items():
         matches = pdata.get("matches", [])
         for match in matches:
+            #  Handle items robustly 
+            items = safe_json_parse(match.get("items", "[]"))
+            if not isinstance(items, list):
+                items = []
+            items = (items + [None] * 7)[:7]  # ensure 7 slots
+
+            #  Build base row 
             row = {
                 "puuid": puuid,
                 "match_id": match.get("match_id"),
@@ -34,21 +44,27 @@ def load_json_to_df(json_path):
                 "gold_earned": match.get("gold_earned", 0),
                 "vision_score": match.get("vision_score", 0),
                 "damage": match.get("total_damage_dealt_to_champions", 0),
-                "cs": match.get("total_minions_killed", 0) + match.get("total_neutral_minions_killed", 0),
+                "cs": match.get("cs"),
                 "win": match.get("win", 0),
                 "duration": match.get("game_duration", 0),
                 "role": match.get("resolved_position"),
             }
 
-            # Items and spells (lists)
-            row["items"] = safe_json_parse(match.get("items", "[]"))
+            #  Add each item individually for ML 
+            for i in range(7):
+                row[f"item{i}"] = items[i]
+
+            #  Keep full list for reference 
+            row["items"] = items
+
+            #  Spells 
             row["spells"] = safe_json_parse(match.get("spells", "[]"))
 
-            # Perks
+            #  Perks 
             perks_data = safe_json_parse(match.get("perks"))
             row.update(flatten_perks(perks_data))
 
-            # Challenges
+            #  Challenges 
             challenges_data = safe_json_parse(match.get("challenges"))
             row.update(flatten_challenges(challenges_data))
 
@@ -94,6 +110,7 @@ def flatten_challenges(challenges):
 
 
 def transform_features(df):
+    """Compute derived features like KDA, GPM, DPM."""
     if df.empty:
         return df
     df["kda"] = (df["kills"] + df["assists"]) / df["deaths"].clip(lower=1)
@@ -101,8 +118,7 @@ def transform_features(df):
     df["dpm"] = df["damage"] / (df["duration"].clip(lower=1) / 60)
     return df
 
-# TODO: MAYBE STORE THIS AS A CSV???
-# DATA MODS  
+# ENTRY POINT
 OUTPUT_DIR = "../../data"
 json_path = os.path.join(OUTPUT_DIR, "players_matches.json")
 
@@ -112,4 +128,5 @@ if __name__ == "__main__":
     df = transform_features(df)
     output_path = os.path.join(OUTPUT_DIR, "normalized_matches.csv")
     df.to_csv(output_path, index=False)
-    print(df.head())
+    print("  Exported normalized_matches.csv successfully!")
+    print(df.head(5))

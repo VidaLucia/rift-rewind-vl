@@ -4,9 +4,9 @@ from db_setup import DB_FILE
 def get_conn():
     return sqlite3.connect(DB_FILE)
 
-# =========================
+# =
 # LEAGUE STORAGE
-# =========================
+# =
 def save_league(league_data, region):
     """
     Save league + all entries (LeagueItemDTO + MiniSeriesDTO) into DB.
@@ -53,9 +53,9 @@ def save_league(league_data, region):
     conn.commit()
     conn.close()
 
-# =========================
+# =
 # PLAYER STORAGE
-# =========================
+# =
 def save_player(puuid, region):
     conn = get_conn()
     c = conn.cursor()
@@ -63,9 +63,9 @@ def save_player(puuid, region):
     conn.commit()
     conn.close()
 
-# =========================
+# =
 # MATCH STORAGE
-# =========================
+# =
 def save_match(match_id, region, details, timeline):
     conn = get_conn()
     c = conn.cursor()
@@ -181,9 +181,9 @@ def save_match(match_id, region, details, timeline):
     conn.commit()
     conn.close()
 
-# =========================
+# =
 # PLAYER ↔ MATCH LINK
-# =========================
+# =
 def save_player_match(puuid, match_id):
     conn = get_conn()
     c = conn.cursor()

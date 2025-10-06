@@ -68,7 +68,7 @@ async def riot_request(session, url, headers, params=None, routing=None):
     # Outside lock → make the request
     async with session.get(url, headers=headers, params=params) as resp:
         if resp.status == 429:
-            #print(f"[{routing}] 429 Too Many Requests — backoff 2s...")
+            #print(f"[{routing}] 429 Too Many Requests — backoff 2s")
             await asyncio.sleep(2)
             return await riot_request(session, url, headers, params, routing)
 

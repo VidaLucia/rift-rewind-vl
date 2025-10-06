@@ -1,4 +1,12 @@
 requests
 python-dotenv
 aiohttp
-sqlite3
+pandas
+numpy
+scikit-learn
+aiohttp
+requests
+matplotlib
+seaborn
+umap-learn
+kneed
