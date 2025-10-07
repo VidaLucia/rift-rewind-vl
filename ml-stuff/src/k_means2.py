@@ -108,7 +108,11 @@ print(f"KMeans Silhouette: {sil_kmeans:.4f}")
 print("Running HDBSCAN...")
 clusterer = hdbscan.HDBSCAN(min_cluster_size=MIN_CLUSTER_SIZE, metric='euclidean')
 labels_hdb = clusterer.fit_predict(X_umap)
-sil_hdb = silhouette_score(X_umap, labels_hdb[labels_hdb >= 0]) if len(set(labels_hdb)) > 1 else -1
+mask = labels_hdb >= 0
+if np.sum(mask) > 1 and len(set(labels_hdb[mask])) > 1:
+    sil_hdb = silhouette_score(X_umap[mask], labels_hdb[mask])
+else:
+    sil_hdb = -1
 print(f"HDBSCAN Silhouette: {sil_hdb:.4f}")
 
 #  METRICS 

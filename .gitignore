@@ -36,5 +36,7 @@ normalized_matches.csv
 players_matches.json
 *.db
 *.csv
+/data/*
+/models/*
 # progress
 progress.json

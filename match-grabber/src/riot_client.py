@@ -73,6 +73,7 @@ async def riot_request(session, url, headers, params=None, routing=None):
             return await riot_request(session, url, headers, params, routing)
 
         if resp.status in (401, 403):
+            print(f" Riot API auth error {resp.status} for {url}")
             raise RuntimeError("API key invalid or expired. Refresh it at https://developer.riotgames.com/")
 
         resp.raise_for_status()
