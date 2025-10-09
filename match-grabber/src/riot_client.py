@@ -48,7 +48,7 @@ async def riot_request(session, url, headers, params=None, routing=None):
         # Enforce 100 requests / 2 min
         while len(rl["timestamps"]) >= 100:
             sleep_time = 120 - (now - rl["timestamps"][0])
-            #print(f"[{routing}] Hit 100/2min limit -> sleeping {sleep_time:.1f}s")
+            print(f"[{routing}] Hit 100/2min limit -> sleeping {sleep_time:.1f}s")
             await asyncio.sleep(sleep_time)
             now = time.time()
             rl["timestamps"] = [t for t in rl["timestamps"] if now - t < 120]
@@ -57,7 +57,7 @@ async def riot_request(session, url, headers, params=None, routing=None):
         one_sec_window = [t for t in rl["timestamps"] if now - t < 1]
         if len(one_sec_window) >= 20:
             sleep_time = 1 - (now - one_sec_window[0])
-            #print(f"[{routing}] Hit 20/sec limit -> sleeping {sleep_time:.2f}s")
+            print(f"[{routing}] Hit 20/sec limit -> sleeping {sleep_time:.2f}s")
             await asyncio.sleep(sleep_time)
             now = time.time()
             rl["timestamps"] = [t for t in rl["timestamps"] if now - t < 120]

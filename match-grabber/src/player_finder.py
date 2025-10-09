@@ -206,10 +206,7 @@ async def export_match_history(
 
 if __name__ == "__main__":
     region = "na1"
-    summoner_name = "pyropiller167"
-    tag = "na1"
-    asyncio.run(export_match_history(region, summoner_name, tag, output_path=f"../../data/players/{summoner_name}#{tag}_data.csv",max_matches =999))
-    region = "na1"
-    summoner_name = "aquatick"
-    tag = "001"
-    asyncio.run(export_match_history(region, summoner_name, tag, output_path=f"../../data/players/{summoner_name}#{tag}_data.csv",max_matches =999))
+    summoner_name = "aixwy"
+    tag = "cham"
+    asyncio.run(export_match_history(region, summoner_name, tag, output_path=f"../../data/players/{summoner_name}#{tag}_data.csv",max_matches =50))
+    

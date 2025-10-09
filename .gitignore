@@ -38,5 +38,6 @@ players_matches.json
 *.csv
 /data/*
 /models/*
+debug.py
 # progress
 progress.json
