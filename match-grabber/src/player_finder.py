@@ -72,11 +72,17 @@ async def export_match_history(
         champ_df = await get_champion_data(session)
         print(f"Loaded {len(champ_df)} champion records from DDragon")
 
+        # Add numeric champion ID (_id) from DDragon
+        print("Adding numeric champion IDs...")
+        champ_df["champion"] = champ_df["champion"].astype(str)
+        champ_df["_id"] = champ_df.index  # numeric ID surrogate
+        if "key" in champ_df.columns:
+            champ_df["_id"] = champ_df["key"].astype(int)
+
         print("Fetching match IDs...")
         match_ids = await get_matches(session, puuid, region)
         print(f"Found {len(match_ids)} matches")
 
-        # Apply match limit (bandaid fix)
         if max_matches:
             match_ids = match_ids[:max_matches]
             print(f"Limiting to {len(match_ids)} matches")
@@ -97,17 +103,16 @@ async def export_match_history(
                     if p.get("puuid") != puuid:
                         continue
 
-                    # Resolve role using your priority logic
                     resolved_role = resolve_position(p)
                     numeric_role = ROLE_MAP.get(resolved_role, 0)
 
                     row = {
                         "match_id": match_id,
-                        "duration": p.get("gameDuration"),
-                        "date": p.get("gameCreation"),
-                        "champion": p.get("championName"),
+                        "duration": p.get("gameDuration", 0),
+                        "date": p.get("gameCreation", 0),
+                        "champion": p.get("championName", ""),
                         "role_str": resolved_role,
-                        "role": numeric_role,  # numeric encoding for KMeans
+                        "role": numeric_role,
                         "kills": p.get("kills", 0),
                         "deaths": p.get("deaths", 0),
                         "assists": p.get("assists", 0),
@@ -116,7 +121,7 @@ async def export_match_history(
                         "gold_earned": p.get("goldEarned", 0),
                         "vision_score": p.get("visionScore", 0),
                         "win": int(p.get("win", False)),
-                        #  Challenge Metrics 
+                        # Challenge metrics
                         "ch_kda": p.get("challenges", {}).get("kda", 0),
                         "ch_killingSprees": p.get("challenges", {}).get("killingSprees", 0),
                         "ch_damagePerMinute": p.get("challenges", {}).get("damagePerMinute", 0),
@@ -136,7 +141,8 @@ async def export_match_history(
                         "ch_saveAllyFromDeath": p.get("challenges", {}).get("saveAllyFromDeath", 0),
                         "ch_immobilizeAndKillWithAlly": p.get("challenges", {}).get("immobilizeAndKillWithAlly", 0),
                         "ch_visionScorePerMinute": p.get("challenges", {}).get("visionScorePerMinute", 0),
-                        #  Rune Info 
+                        "ch_wardTakedowns": p.get("challenges", {}).get("wardTakedowns", 0),
+                        # Runes
                         "primarystyle_id": p.get("perks", {}).get("styles", [{}])[0].get("style", 0),
                         "substyle_id": p.get("perks", {}).get("styles", [{}])[-1].get("style", 0),
                         "primarystyle_perk1": p.get("perks", {}).get("styles", [{}])[0].get("selections", [{}])[0].get("perk", 0),
@@ -144,22 +150,16 @@ async def export_match_history(
                         "primarystyle_perk3": p.get("perks", {}).get("styles", [{}])[0].get("selections", [{}])[2].get("perk", 0),
                         "substyle_perk1": p.get("perks", {}).get("styles", [{}])[-1].get("selections", [{}])[0].get("perk", 0),
                         "substyle_perk2": p.get("perks", {}).get("styles", [{}])[-1].get("selections", [{}])[1].get("perk", 0),
-                        #  Items 
-                        "item0": p.get("item0"),
-                        "item1": p.get("item1"),
-                        "item2": p.get("item2"),
-                        "item3": p.get("item3"),
-                        "item4": p.get("item4"),
-                        "item5": p.get("item5"),
-                        "item6": p.get("item6"),
-                        "tag_0": 0,
+                        # Items
+                        "item0": p.get("item0"), "item1": p.get("item1"), "item2": p.get("item2"),
+                        "item3": p.get("item3"), "item4": p.get("item4"),
+                        "item5": p.get("item5"), "item6": p.get("item6"),
                     }
                     rows.append(row)
 
             except Exception as e:
                 print(f"Failed match {match_id}: {e}")
 
-        #  Bail if empty 
         if not rows:
             print("No matches retrieved.")
             return
@@ -167,46 +167,65 @@ async def export_match_history(
         df = pd.DataFrame(rows)
         print(f"Collected {len(df)} rows")
 
-        #  Derived features 
-        print("Computing derived metrics...")
-        df["kp_rate"] = df["ch_killParticipation"]
-        df["damage_share"] = df["ch_teamDamagePercentage"]
-        df["gold_efficiency"] = df["ch_goldPerMinute"] / df["gold_earned"].replace(0, np.nan)
+        # --- Derived Features (Trainer-Exact) ---
+        print("Computing derived metrics (trainer-compatible)...")
+
+        # Ensure percentage metrics scaled to 0–1
+        df["kp_rate"] = df["ch_killParticipation"] / 100
+        df["damage_share"] = df["ch_teamDamagePercentage"] / 100
+
+        # Derived ratios identical to trainer script
+        df["gold_efficiency"] = df["ch_goldPerMinute"] / df["duration"].clip(lower=1)
         df["objective_focus"] = (
             df["ch_turretTakedowns"] + df["ch_baronTakedowns"] + df["ch_dragonTakedowns"]
         ) / 3
-        df["survivability_ratio"] = df["kills"] / df["deaths"].replace(0, np.nan)
+        df["survivability_ratio"] = df["kills"] / df["deaths"].clip(lower=1)
         df["vision_efficiency"] = df["ch_visionScorePerMinute"] / (df["vision_score"] + 1)
 
-        # Rate stats (kills, assists, cs per minute)
-        duration_min = df["duration"].replace(0, np.nan) / 60
-        df["kpm"] = df["kills"] / duration_min
-        df["dpm"] = df["ch_damagePerMinute"]
-        df["apm"] = df["assists"] / duration_min
-        df["cspm"] = df["cs"] / duration_min
-        df = df.fillna(0)
+        # Per-minute features (trainer-matched)
+        df["kpm"] = df["kills"] / df["duration"].clip(lower=1)
+        df["dpm"] = df["damage"] / df["duration"].clip(lower=1)
+        df["apm"] = df["assists"] / df["duration"].clip(lower=1)
+        df["cspm"] = df["cs"] / df["duration"].clip(lower=1)
 
-        #  Pruning 
+        # Prune and merge champion info
         before = len(df)
         df = df[~df["champion"].str.startswith("Strawberry_", na=False)]
         df = df[df["primarystyle_id"] != 0]
         after = len(df)
         print(f"Pruned {before - after} invalid rows")
 
-        #  Merge champion metadata 
-        df = df.merge(champ_df, on="champion", how="left")
+        # Merge champion metadata
+        df = df.merge(champ_df[["champion", "_id", "attack", "defense", "magic", "difficulty", "tags"]], on="champion", how="left")
 
-        #  One-hot encode tags 
+        # One-hot encode tags (trainer expects tag_ prefix)
         tag_dummies = df["tags"].fillna("").str.get_dummies(sep=",").add_prefix("tag_")
         df = pd.concat([df, tag_dummies], axis=1)
 
-        #  Save 
+        # Fill missing values and export
+        df = df.fillna(0)
         df.to_csv(output_path, index=False)
         print(f"Saved cleaned feature-rich data to {output_path}")
 
 if __name__ == "__main__":
     region = "na1"
-    summoner_name = "aixwy"
-    tag = "cham"
-    asyncio.run(export_match_history(region, summoner_name, tag, output_path=f"../../data/players/{summoner_name}#{tag}_data.csv",max_matches =50))
-    
+    players = [
+        #("aquatick", "001"),
+        #("vida", "lucia"),
+        ("aixwy", "cham"),
+        ("pyropiller167", "na1"),
+        ("lulululu04", "lulu"),
+    ]
+
+    for summoner_name, tag in players:
+        print(f"Exporting match history for {summoner_name}#{tag}...")
+        asyncio.run(
+            export_match_history(
+                region,
+                summoner_name,
+                tag,
+                output_path=f"../../data/players/{summoner_name}#{tag}_data.csv",
+                max_matches=200,
+            )
+        )
+        print(f"Done: {summoner_name}#{tag}\n")

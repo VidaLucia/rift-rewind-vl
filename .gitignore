@@ -41,3 +41,9 @@ players_matches.json
 debug.py
 # progress
 progress.json
+
+# Stuff that was relevant but is no longer
+k_means.ipynb
+k_means2.ipynb
+predict_cluster2.py
+predict_cluster3.py

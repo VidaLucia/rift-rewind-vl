@@ -7,7 +7,7 @@ from sklearn.preprocessing import StandardScaler
 import umap
 from joblib import dump
 # CONFIG 
-DATA_PATH = "../../data/players/vida#lucia_data.csv"
+DATA_PATH = "../../data/players/aquatick#001_data.csv"
 UMAP_PATH = "../../models/umap_reducer.pkl"
 MODEL_PATH = "../../models/kmeans_model.pkl"
 OUTPUT_PATH = "../../data/player_labeled.csv"
@@ -43,6 +43,12 @@ if not os.path.exists(DATA_PATH):
 
 df = pd.read_csv(DATA_PATH)
 print(f"Loaded {len(df)} rows from {DATA_PATH}")
+MATCH_LIMIT = 200 
+
+if MATCH_LIMIT is not None:
+    print(f"[Limiter] Limiting to first {MATCH_LIMIT} matches for fair comparison...")
+    df = df.tail(MATCH_LIMIT)  
+    print(f"[Limiter] Now using {len(df)} matches")
 
 # TEMP: Champion ID Map (TODO: remove when Player Finder fixed) 
 champion_id_map = {
@@ -100,21 +106,22 @@ kmeans = load(MODEL_PATH)
 # FEATURE SET 
 features = [
     "kills", "deaths", "assists", "damage", "cs", "role",
-    "kp_rate", "damage_share", "gold_efficiency", "objective_focus",
-    "survivability_ratio", "vision_efficiency",
-    "primarystyle_id", "primarystyle_perk1", "primarystyle_perk2", "primarystyle_perk3",
+    "kp_rate", "damage_share", #"gold_efficiency",
+    "objective_focus", "survivability_ratio", "vision_efficiency",
+    "primarystyle_id", "primarystyle_perk1", "primarystyle_perk2", "primarystyle_perk3","primarystyle_perk4",
     "substyle_id", "substyle_perk1", "substyle_perk2",
-    "ch_kda", "ch_killingSprees", "ch_damagePerMinute",
-    "ch_teamDamagePercentage", "ch_killParticipation",
+    "ch_kda", "ch_killingSprees", #"ch_damagePerMinute",
+    "ch_teamDamagePercentage", #"ch_killParticipation",
     "ch_turretTakedowns", "ch_baronTakedowns", "ch_dragonTakedowns",
-    "ch_enemyJungleMonsterKills", "ch_goldPerMinute", "ch_laningPhaseGoldExpAdvantage",
-    "ch_maxCsAdvantageOnLaneOpponent", "ch_deathsByEnemyChamps", "ch_damageTakenOnTeamPercentage",
-    "ch_survivedSingleDigitHpCount", "ch_effectiveHealAndShielding", "ch_saveAllyFromDeath",
+    "ch_enemyJungleMonsterKills",
+    "ch_goldPerMinute", "ch_laningPhaseGoldExpAdvantage",
+    "ch_maxCsAdvantageOnLaneOpponent",
+    "ch_deathsByEnemyChamps", "ch_damageTakenOnTeamPercentage",
+    "ch_survivedSingleDigitHpCount",
+    "ch_effectiveHealAndShielding", "ch_saveAllyFromDeath",
     "ch_immobilizeAndKillWithAlly", "ch_visionScorePerMinute",
-    "kpm", "dpm", "apm", "cspm", "_id",
-    "attack", "defense", "magic", "difficulty",
-    "tag_0", "tag_Assassin", "tag_Fighter", "tag_Mage",
-    "tag_Marksman", "tag_Support", "tag_Tank",
+    "kpm", "dpm", "apm", "cspm",
+    "_id", "attack", "defense", "magic", "difficulty",
 ]
 
 for feat in features:
@@ -144,9 +151,10 @@ else:
 X = df[available_features].replace([np.inf, -np.inf], np.nan).fillna(0)
 # Feature Group Normalization 
 # This prevents damage metrics from overpowering the embedding
-if "_id" in X.columns:
-    print("Downweighting champion ID (_id) to reduce numeric bias")
-    X["_id"] *= 0.001
+
+#if "_id" in X.columns:
+    #print("Downweighting champion ID (_id) to reduce numeric bias")
+    #X["_id"] *= 0.001
 
 # Step 2. Log-compress extreme damage / participation metrics 
 high_var_cols = ["kp_rate", "dpm", "damage_share"]
@@ -158,45 +166,22 @@ for col in high_var_cols:
         after_max = X[col].max()
         print(f"Log-compressed '{col}': max {before_max:.1f} -> {after_max:.1f}")
 # Downweight the riot champion attributes
-static_weights = {
-    "attack": 0.4,
-    "defense": 0.4,
-    "magic": 0.4,
-    "difficulty": 0.35,
+feature_weights = {
+    "kpm": 2.0, "dpm": 2.0, "apm": 1.8, "cspm": 1.6,
+    #"ch_damagePerMinute": 1.5, 
+    "ch_killParticipation": 1.4,
+    "ch_goldPerMinute": 1.3, "ch_turretTakedowns": 1.3,
+    "ch_visionScorePerMinute": 1.2, "objective_focus": 1.2,
+    "role": 1.4, "damage_share": 1.2, "kp_rate": 1.1,
+    #"gold_efficiency": 1.0, 
+    "survivability_ratio": 0.9,
+    "vision_efficiency": 0.9, "attack": 0.6,
+    "defense": 0.6, "magic": 0.6, "difficulty": 0.6,
 }
-
-for feat, weight in static_weights.items():
-   if feat in X.columns:
+for feat, weight in feature_weights.items():
+    if feat in X.columns:
         X[feat] *= weight
-        print(f"  Strongly downweighted '{feat}' * {weight}")
 
-print("Applied static stat downweighting to avoid champion bias.\n")
-# Step 3. Apply group-wise weighting to balance feature families 
-group_weights = {
-    "damage": 0.5,          # reduce dominance of all damage metrics
-    "gold": 0.7,            # moderate influence
-    "vision": 1.5,          # boost visibility/utility
-    "objective": 1.4,       # emphasize macro players
-    "survivability": 1.2,   # emphasize tanky/safe play
-    "support": 1.3,         # reward assists/heals/saves
-}
-
-for col in X.columns:
-    col_l = col.lower()
-    if "damage" in col_l:
-        X[col] *= group_weights["damage"]
-    elif "gold" in col_l:
-        X[col] *= group_weights["gold"]
-    elif "vision" in col_l:
-        X[col] *= group_weights["vision"]
-    elif any(tag in col_l for tag in ["turret", "baron", "dragon", "objective"]):
-        X[col] *= group_weights["objective"]
-    elif any(tag in col_l for tag in ["death", "surviv", "taken"]):
-        X[col] *= group_weights["survivability"]
-    elif any(tag in col_l for tag in ["heal", "assist", "save", "shield"]):
-        X[col] *= group_weights["support"]
-
-print("Applied group-based weighting for balanced playstyle clustering")
 
 # Step 4. Check pre-scaling variance for diagnostics 
 pre_var = pd.Series(np.var(X, axis=0), index=X.columns)
@@ -477,7 +462,7 @@ report_path = os.path.join(export_dir, "clusters_full_report.txt")
 with open(report_path, "w", encoding="utf-8") as f:
     f.write("\n".join(report_lines))
 
-print(f"✅ Saved full cluster report with all features to {report_path}")
+print(f"Saved full cluster report with all features to {report_path}")
 
 # OPTIONAL PREVIEW
 for c in sorted(cluster_profiles.keys()):
