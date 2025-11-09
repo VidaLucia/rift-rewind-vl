@@ -1,0 +1,122 @@
+{
+  "character_info": {
+    "character_name": "",
+    "class": "",
+    "level": 1,
+    "background": "",
+    "player_name": "",
+    "race": "",
+    "alignment": "",
+    "experience_points": 0
+  },
+
+  "abilities": {
+    "strength": 10,
+    "dexterity": 10,
+    "constitution": 10,
+    "intelligence": 10,
+    "wisdom": 10,
+    "charisma": 10,
+    "saving_throws": {
+      "strength": false,
+      "dexterity": false,
+      "constitution": false,
+      "intelligence": false,
+      "wisdom": false,
+      "charisma": false
+    },
+    "skills": {
+      "acrobatics": false,
+      "animal_handling": false,
+      "arcana": false,
+      "athletics": false,
+      "deception": false,
+      "history": false,
+      "insight": false,
+      "intimidation": false,
+      "investigation": false,
+      "medicine": false,
+      "nature": false,
+      "perception": false,
+      "performance": false,
+      "persuasion": false,
+      "religion": false,
+      "sleight_of_hand": false,
+      "stealth": false,
+      "survival": false
+    }
+  },
+
+  "combat": {
+    "inspiration": 0,
+    "proficiency_bonus": 2,
+    "armor_class": 0,
+    "initiative": 0,
+    "speed": 6,
+    "hit_points": {
+      "maximum": 0,
+      "current": 0,
+      "temporary": 0
+    },
+    "hit_dice": {
+      "total": "",
+      "remaining": ""
+    },
+    "death_saves": {
+      "successes": 0,
+      "failures": 0
+    },
+    "attacks_spellcasting": []
+  },
+
+  "personality": {
+    "traits": "",
+    "ideals": "",
+    "bonds": "",
+    "flaws": ""
+  },
+
+  "equipment": {
+    "armor": [],
+    "weapons": [],
+    "gear": [],
+    "other_proficiencies_languages": []
+  },
+
+  "features_traits": [],
+
+  "appearance": {
+    "age": "",
+    "height": "",
+    "weight": "",
+    "eyes": "",
+    "skin": "",
+    "hair": "",
+    "description": ""
+  },
+
+  "backstory": {
+    "character_backstory": "",
+    "allies_organizations": [],
+    "treasure": []
+  },
+
+  "spellcasting": {
+    "spellcasting_class": "",
+    "spellcasting_ability": "",
+    "spell_save_dc": 0,
+    "spell_attack_bonus": 0,
+    "cantrips": [],
+    "spells": {
+      "level_1": { "slots_total": 0, "slots_expended": 0, "spells": [] },
+      "level_2": { "slots_total": 0, "slots_expended": 0, "spells": [] },
+      "level_3": { "slots_total": 0, "slots_expended": 0, "spells": [] },
+      "level_4": { "slots_total": 0, "slots_expended": 0, "spells": [] },
+      "level_5": { "slots_total": 0, "slots_expended": 0, "spells": [] },
+      "level_6": { "slots_total": 0, "slots_expended": 0, "spells": [] },
+      "level_7": { "slots_total": 0, "slots_expended": 0, "spells": [] },
+      "level_8": { "slots_total": 0, "slots_expended": 0, "spells": [] },
+      "level_9": { "slots_total": 0, "slots_expended": 0, "spells": [] }
+    }
+  }
+}

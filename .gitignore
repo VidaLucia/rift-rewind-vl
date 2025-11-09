@@ -29,7 +29,8 @@ Thumbs.db
 *.egg-info/
 dist/
 build/
-
+outdated/*
+backend/models/*
 # DB
 riot_data.db
 normalized_matches.csv

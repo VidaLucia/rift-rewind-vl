@@ -1,0 +1,15 @@
+{
+    "bandlecity": ["corki","lulu","rumble","teemo","tristana","veigar","yuumi"],
+    "demacia": ["fiora","galio","garen","jarvan iv","lux","morgana","poppy","quinn","shyvana","sona","sylas","vayne","xin zhao"],
+    "freljord": ["ashe","anivia","aurora","braum","lissandra","nunu","olaf","ornn","sejuani","trundle","tryndamere","udyr","volibear"],
+    "ionia": ["ahri","akali","hwei","irelia","ivern","jhin","karma","kayn","kennen","lee sin","lillia","master yi", "rakan", "sett","shen","syndra","varus","wukong","xayah","yasuo","yone","yunara","zed"],
+    "ixtal":["malphite","milio","neeko","nidalee","rengar","skarner","zyra"],
+    "noxus": ["ambessa","briar","cassiopeia","darius","draven","katarina","kled","leblanc","mel","mordekaiser","rell","riven","samira","sion","swain","talon","vladimir"],
+    "piltover": ["caitlyn","camille","ezreal","heimerdinger","jayce","orianna","vi","seraphine"],
+    "shadow_isles": ["elise","gwen","hecarim","kalista","karthus","maokai","thresh","vex","viego","yorick"],
+    "bilgewater": ["illaoi","fizz","gangplank","graves","miss fortune","nautilus","nilah","pyke","twisted fate"],
+    "shurima": ["akshan","amumu","azir","k'sante","naafiri","nasus","rammus","renekton","sivir","taliyah","xerath"],
+    "targon": ["aphelios","aurelion sol","diana","leona","pantheon","soraka","taric","zoe"],
+    "void":["bel'veth","cho'gath","kai'sa","kassadin","kha'zix","kog'maw","malzahar","rek'sai","vel'koz"],
+    "zaun": ["blitzcrank","dr.mundo","ekko","janna","jinx","renata glasc","singed","twitch","urgot","viktor","warwick","zac","zeri","ziggs"]
+}

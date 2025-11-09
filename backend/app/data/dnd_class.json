@@ -1,0 +1,1204 @@
+{
+  "Artificer": {
+    "Kills": 0,
+    "Deaths": 0,
+    "Assists": 1,
+    "Damage": 0,
+    "CS": 0,
+    "KP_Rate": 1,
+    "Damage_share": -1,
+    "Objective_Focus": 1,
+    "Survivability_Ratio": 0,
+    "Vision_Efficiency": 1,
+    "CH_KDA": 0,
+    "CH_KillingSprees": -1,
+    "CH_TeamDamagePercentage": -1,
+    "CH_TurretTakedowns": 0,
+    "CH_BaronTakedowns": 0,
+    "CH_DragonTakedowns": 0,
+    "CH_enemyJungleMonsterKills": 0,
+    "CH_goldPerMinute": 1,
+    "CH_laningPhaseGoldExpAdvantage": 0,
+    "CH_MaxCsAdvantageOnLaneOpponent": 0,
+    "CH_DeathsbyEnemyChamps": 0,
+    "CH_damageTakenOnTeamPercentage": -1,
+    "CH_survivedSingleDigitHpCount": -1,
+    "CH_EffectiveHealandShielding": 1,
+    "CH_SaveAllyFromDeath": 1,
+    "CH_ImmobilizeandKillWithAlly": 1,
+    "CH_VisionScorePerMinute": 1,
+    "KPM": 0,
+    "DPM": 0,
+    "APM": 1,
+    "CSPM": 0,
+    "Attack": -1,
+    "Defense": 0,
+    "Magic": 1,
+    "Difficulty": 1,
+    "primarystyle_perk1": [
+      "Fleet Footwork",
+      "Summon Aery",
+      "Phase Rush",
+      "Grasp of the Undying",
+      "Guardian",
+      "Glacial Augment",
+      "Unsealed Spellbook"
+    ],
+
+    "main_minor_perks": {
+      "+": {
+        "perks": [
+          "Legend Haste",
+          "Taste of Blood",
+          "Deep Ward",
+          "Waterwalking",
+          "Cosmic Insight",
+          "Approach Velocity"
+        ],
+        "weight": 2
+      },
+      "-": {
+        "perks": [
+          "Triumph",
+          "Manaflow Band",
+          "Absolute Focus",
+          "Gathering Storm",
+          "Demolish",
+          "Unflinching",
+          "Hextech Flashtraption"
+        ],
+        "weight": 1
+      }
+    },
+
+    "sub_minor_perks": {
+      "+": {
+        "perks": ["Cosmic Insight", "Approach Velocity"],
+        "weight": 2
+      },
+      "-": {
+        "perks": ["Cash Back", "Time Warp Tonic", "Biscuit Delivery"],
+        "weight": 1
+      }
+    }
+  },
+  "Barbarian": {
+    "Kills": 1,
+    "Deaths": 1,
+    "Assists": 0,
+    "Damage": 1,
+    "CS": 1,
+    "KP_Rate": 1,
+    "Damage_share": 1,
+    "Objective_Focus": 0,
+    "Survivability_Ratio": 1,
+    "Vision_Efficiency": -1,
+    "CH_KDA": 1,
+    "CH_KillingSprees": 1,
+    "CH_TeamDamagePercentage": 1,
+    "CH_TurretTakedowns": 1,
+    "CH_BaronTakedowns": 1,
+    "CH_DragonTakedowns": 1,
+    "CH_enemyJungleMonsterKills": -1,
+    "CH_goldPerMinute": 1,
+    "CH_laningPhaseGoldExpAdvantage": 1,
+    "CH_MaxCsAdvantageOnLaneOpponent": 1,
+    "CH_DeathsbyEnemyChamps": 0,
+    "CH_damageTakenOnTeamPercentage": 1,
+    "CH_survivedSingleDigitHpCount": 1,
+    "CH_EffectiveHealandShielding": 0,
+    "CH_SaveAllyFromDeath": -1,
+    "CH_ImmobilizeandKillWithAlly": 0,
+    "CH_VisionScorePerMinute": -1,
+    "KPM": 1,
+    "DPM": 1,
+    "APM": -1,
+    "CSPM": 0,
+    "Attack": 1,
+    "Defense": 1,
+    "Magic": -1,
+    "Difficulty": -1,
+    "primarystyle_perk1": ["Conquerer", "Grasp of the Undying", "Aftershock"],
+
+    "main_minor_perks": {
+      "+": {
+        "perks": [
+          "Absorb Life",
+          "Triumph",
+          "Arcane Comet",
+          "Taste of Blood",
+          "Demolish",
+          "Shield Bash",
+          "Conditioning",
+          "Second Wind",
+          "Bone Plating",
+          "Overgrowth",
+          "Revitalize",
+          "Unflinching",
+          "Hextech Flashtraption"
+        ],
+        "weight": 2
+      },
+      "-": {
+        "perks": [
+          "Legend Haste",
+          "Coup de Grace",
+          "Relentless Hunter",
+          "Ultimate Hunter",
+          "Nimbus Cloak",
+          "Scorch",
+          "Gathering Storm",
+          "Font of Life",
+          "Cash Back"
+        ],
+        "weight": 1
+      }
+    },
+
+    "sub_minor_perks": {
+      "+": {
+        "perks": ["Cosmic Insight", "Approach Velocity"],
+        "weight": 2
+      },
+      "-": {
+        "perks": ["Triple Tonic", "Time Warp Tonic", "Biscuit Delivery"],
+        "weight": 1
+      }
+    }
+  },
+  "Bard": {
+    "Kills": -1,
+    "Deaths": -1,
+    "Assists": 1,
+    "Damage": 0,
+    "CS": 0,
+    "KP_Rate": 1,
+    "Damage_share": -1,
+    "Objective_Focus": 1,
+    "Survivability_Ratio": 0,
+    "Vision_Efficiency": 1,
+    "CH_KDA": 0,
+    "CH_KillingSprees": 0,
+    "CH_TeamDamagePercentage": -1,
+    "CH_TurretTakedowns": 0,
+    "CH_BaronTakedowns": 0,
+    "CH_DragonTakedowns": 0,
+    "CH_enemyJungleMonsterKills": -1,
+    "CH_goldPerMinute": 0,
+    "CH_laningPhaseGoldExpAdvantage": 0,
+    "CH_MaxCsAdvantageOnLaneOpponent": 0,
+    "CH_DeathsbyEnemyChamps": 0,
+    "CH_damageTakenOnTeamPercentage": -1,
+    "CH_survivedSingleDigitHpCount": -1,
+    "CH_EffectiveHealandShielding": 1,
+    "CH_SaveAllyFromDeath": 1,
+    "CH_ImmobilizeandKillWithAlly": 1,
+    "CH_VisionScorePerMinute": 1,
+    "KPM": -1,
+    "DPM": 0,
+    "APM": 0,
+    "CSPM": -1,
+    "Attack": 0,
+    "Defense": 0,
+    "Magic": 1,
+    "Difficulty": 0,
+    "primarystyle_perk1": [
+      "Fleet Footwork",
+      "Lethal Tempo",
+      "Electrocute",
+      "Summon Aery",
+      "Arcane Comet",
+      "Phase Rush",
+      "Guardian",
+      "Glacial Augment",
+      "Unsealed Spellbook",
+      "First Strike"
+    ],
+
+    "main_minor_perks": {
+      "+": {
+        "perks": [
+          "Presence of Mind",
+          "Legend Haste",
+          "Taste of Blood",
+          "Sixth Sense",
+          "Ultimate Hunter",
+          "Manaflow Band",
+          "Nimbus Cloak",
+          "Transcendence",
+          "Celerity",
+          "Absolute Focus",
+          "Scorch",
+          "Waterwalking",
+          "Gathering Storm",
+          "Demolish",
+          "Revitalize",
+          "Cosmic Insight",
+          "Approach Velocity"
+        ],
+        "weight": 2
+      },
+      "-": {
+        "perks": [
+          "Legend Alacrity",
+          "Cheap Shot",
+          "Treasure Hunter",
+          "Relentless Hunter",
+          "Aftershock",
+          "Glacial Augment",
+          "Font of Life",
+          "Second Wind",
+          "Hextech Flashtraption",
+          "Cash Back",
+          "Time Warp Tonic",
+          "Biscuit Delivery",
+          "Magical Footwear",
+          "Unflinching"
+        ],
+        "weight": 1
+      }
+    },
+
+    "sub_minor_perks": {
+      "+": {
+        "perks": ["Cosmic Insight", "Approach Velocity"],
+        "weight": 2
+      },
+      "-": {
+        "perks": ["Triple Tonic", "Time Warp Tonic", "Biscuit Delivery"],
+        "weight": 1
+      }
+    }
+  },
+  "Cleric": {
+    "Kills": -1,
+    "Deaths": 0,
+    "Assists": 1,
+    "Damage": -1,
+    "CS": -1,
+    "KP_Rate": 0,
+    "Damage_share": -1,
+    "Objective_Focus": 0,
+    "Survivability_Ratio": 1,
+    "Vision_Efficiency": 1,
+    "CH_KDA": 1,
+    "CH_KillingSprees": -1,
+    "CH_TeamDamagePercentage": -1,
+    "CH_TurretTakedowns": 0,
+    "CH_BaronTakedowns": 0,
+    "CH_DragonTakedowns": 0,
+    "CH_enemyJungleMonsterKills": -1,
+    "CH_goldPerMinute": -1,
+    "CH_laningPhaseGoldExpAdvantage": -1,
+    "CH_MaxCsAdvantageOnLaneOpponent": 0,
+    "CH_DeathsbyEnemyChamps": 0,
+    "CH_damageTakenOnTeamPercentage": 0,
+    "CH_survivedSingleDigitHpCount": 0,
+    "CH_EffectiveHealandShielding": 1,
+    "CH_SaveAllyFromDeath": 1,
+    "CH_ImmobilizeandKillWithAlly": 1,
+    "CH_VisionScorePerMinute": 1,
+    "KPM": -1,
+    "DPM": -1,
+    "APM": 0,
+    "CSPM": -1,
+    "Attack": -1,
+    "Defense": 1,
+    "Magic": 1,
+    "Difficulty": 1,
+    "primarystyle_perk1": [
+      "Summon Aery",
+      "Arcane Comet",
+      "Grasp of the Undying",
+      "Guardian",
+      "Glacial Augment",
+      "Unsealed Spellbook"
+    ],
+
+    "main_minor_perks": {
+      "+": {
+        "perks": [
+          "Presence of Mind",
+          "Legend Haste",
+          "Manaflow Band",
+          "Transcendence",
+          "Absolute Focus",
+          "Scorch",
+          "Demolish",
+          "Shield Bash",
+          "Second Wind",
+          "Unflinching"
+        ],
+        "weight": 2
+      },
+      "-": {
+        "perks": [
+          "Triumph",
+          "Summon Aery",
+          "Arcane Comet",
+          "Guardian",
+          "Glacial Augment",
+          "Unsealed Spellbook",
+          "Nimbus Cloak",
+          "Celerity",
+          "Waterwalking",
+          "Gathering Storm",
+          "Conditioning",
+          "Bone Plating",
+          "Overgrowth",
+          "Hextech Flashtraption",
+          "Magical Footwear",
+          "Time Warp Tonic",
+          "Cosmic Insight",
+          "Approach Velocity",
+          "Jack of all Trades"
+        ],
+        "weight": 1
+      }
+    },
+
+    "sub_minor_perks": {
+      "+": {
+        "perks": ["Cosmic Insight", "Approach Velocity"],
+        "weight": 2
+      },
+      "-": {
+        "perks": ["Triple Tonic", "Time Warp Tonic", "Biscuit Delivery"],
+        "weight": 1
+      }
+    }
+  },
+  "Druid": {
+    "Kills": 0,
+    "Deaths": 0,
+    "Assists": 0,
+    "Damage": 0,
+    "CS": 0,
+    "KP_Rate": 1,
+    "Damage_share": 0,
+    "Objective_Focus": 0,
+    "Survivability_Ratio": 1,
+    "Vision_Efficiency": 1,
+    "CH_KDA": 1,
+    "CH_KillingSprees": 0,
+    "CH_TeamDamagePercentage": 0,
+    "CH_TurretTakedowns": 0,
+    "CH_BaronTakedowns": 0,
+    "CH_DragonTakedowns": 0,
+    "CH_enemyJungleMonsterKills": 1,
+    "CH_goldPerMinute": 0,
+    "CH_laningPhaseGoldExpAdvantage": 0,
+    "CH_MaxCsAdvantageOnLaneOpponent": 0,
+    "CH_DeathsbyEnemyChamps": 1,
+    "CH_damageTakenOnTeamPercentage": 1,
+    "CH_survivedSingleDigitHpCount": 0,
+    "CH_EffectiveHealandShielding": 0,
+    "CH_SaveAllyFromDeath": 0,
+    "CH_ImmobilizeandKillWithAlly": 1,
+    "CH_VisionScorePerMinute": 1,
+    "KPM": 0,
+    "DPM": -1,
+    "APM": 0,
+    "CSPM": 0,
+    "Attack": 0,
+    "Defense": 1,
+    "Magic": 1,
+    "Difficulty": 1,
+    "primarystyle_perk1": [
+      "Conquerer",
+      "Press the Attack",
+      "Fleet Footwork",
+      "Lethal Tempo",
+      "Summon Aery",
+      "Arcane Comet",
+      "Phase Rush",
+      "Grasp of the Undying",
+      "Aftershock",
+      "Guardian",
+      "Glacial Augment",
+      "Unsealed Spellbook"
+    ],
+
+    "main_minor_perks": {
+      "+": {
+        "perks": [
+          "Last Stand",
+          "Ultimate Hunter",
+          "Axiom Arcanist",
+          "Scorch",
+          "Demolish",
+          "Shield Bash",
+          "Second Wind",
+          "Revitalize",
+          "Hextech Flashtraption",
+          "Unflinching",
+          "Cosmic Insight"
+        ],
+        "weight": 2
+      },
+      "-": {
+        "perks": [
+          "Absorb Life",
+          "Triumph",
+          "Legend Bloodline",
+          "Deep Ward",
+          "Grisly Mementos",
+          "Relentless Hunter",
+          "Nimbus Cloak",
+          "Transcendence",
+          "Celerity",
+          "Gathering Storm",
+          "Font of Life",
+          "Conditioning",
+          "Bone Plating",
+          "Overgrowth",
+          "Magical Footwear",
+          "Second Wind",
+          "Cash Back",
+          "Time Warp Tonic",
+          "Biscuit Delivery",
+          "Approach Velocity",
+          "Jack of all Trades"
+        ],
+        "weight": 1
+      }
+    },
+
+    "sub_minor_perks": {
+      "+": {
+        "perks": ["Cosmic Insight", "Approach Velocity"],
+        "weight": 2
+      },
+      "-": {
+        "perks": ["Triple Tonic", "Time Warp Tonic", "Biscuit Delivery"],
+        "weight": 1
+      }
+    }
+  },
+  "Fighter": {
+    "Kills": 1,
+    "Deaths": 1,
+    "Assists": 0,
+    "Damage": 1,
+    "CS": 1,
+    "KP_Rate": 1,
+    "Damage_share": 1,
+    "Objective_Focus": 0,
+    "Survivability_Ratio": 1,
+    "Vision_Efficiency": -1,
+    "CH_KDA": 1,
+    "CH_KillingSprees": 1,
+    "CH_TeamDamagePercentage": 1,
+    "CH_TurretTakedowns": 0,
+    "CH_BaronTakedowns": 0,
+    "CH_DragonTakedowns": 0,
+    "CH_enemyJungleMonsterKills": 0,
+    "CH_goldPerMinute": 1,
+    "CH_laningPhaseGoldExpAdvantage": 1,
+    "CH_MaxCsAdvantageOnLaneOpponent": 1,
+    "CH_DeathsbyEnemyChamps": 0,
+    "CH_damageTakenOnTeamPercentage": 1,
+    "CH_survivedSingleDigitHpCount": 1,
+    "CH_EffectiveHealandShielding": 0,
+    "CH_SaveAllyFromDeath": -1,
+    "CH_ImmobilizeandKillWithAlly": 0,
+    "CH_VisionScorePerMinute": -1,
+    "KPM": 1,
+    "DPM": 1,
+    "APM": -1,
+    "CSPM": 1,
+    "Attack": 1,
+    "Defense": 1,
+    "Magic": -1,
+    "Difficulty": -1,
+    "primarystyle_perk1": [
+      "Conquerer",
+      "Press the Attack",
+      "Lethal Tempo",
+      "Hail of Blades",
+      "Phase Rush",
+      "Grasp of the Undying",
+      "First Strike"
+    ],
+
+    "main_minor_perks": {
+      "+": {
+        "perks": [
+          "Absorb Life",
+          "Triumph",
+          "Legend Alacrity",
+          "Last Stand",
+          "Shield Bash"
+        ],
+        "weight": 2
+      },
+      "-": {
+        "perks": [
+          "Electrocute",
+          "Dark Harvest",
+          "Coup de Grace",
+          "Grisly Mementos",
+          "Treasure Hunter",
+          "Relentless Hunter",
+          "Nimbus Cloak",
+          "Absolute Focus",
+          "Gathering Storm",
+          "Conditioning",
+          "Second Wind",
+          "Bone Plating",
+          "Revitalize",
+          "Unflinching",
+          "Hextech Flashtraption"
+        ],
+        "weight": 1
+      }
+    },
+
+    "sub_minor_perks": {
+      "+": {
+        "perks": ["Cosmic Insight", "Approach Velocity"],
+        "weight": 2
+      },
+      "-": {
+        "perks": ["Triple Tonic", "Time Warp Tonic", "Biscuit Delivery"],
+        "weight": 1
+      }
+    }
+  },
+  "Monk": {
+    "Kills": 1,
+    "Deaths": 0,
+    "Assists": 0,
+    "Damage": 0,
+    "CS": 1,
+    "KP_Rate": 0,
+    "Damage_share": 0,
+    "Objective_Focus": 0,
+    "Survivability_Ratio": 0,
+    "Vision_Efficiency": -1,
+    "CH_KDA": 0,
+    "CH_KillingSprees": 0,
+    "CH_TeamDamagePercentage": 0,
+    "CH_TurretTakedowns": 0,
+    "CH_BaronTakedowns": 0,
+    "CH_DragonTakedowns": 0,
+    "CH_enemyJungleMonsterKills": 0,
+    "CH_goldPerMinute": 0,
+    "CH_laningPhaseGoldExpAdvantage": 0,
+    "CH_MaxCsAdvantageOnLaneOpponent": 0,
+    "CH_DeathsbyEnemyChamps": 0,
+    "CH_damageTakenOnTeamPercentage": 0,
+    "CH_survivedSingleDigitHpCount": 1,
+    "CH_EffectiveHealandShielding": -1,
+    "CH_SaveAllyFromDeath": -1,
+    "CH_ImmobilizeandKillWithAlly": 1,
+    "CH_VisionScorePerMinute": -1,
+    "KPM": 0,
+    "DPM": 0,
+    "APM": 0,
+    "CSPM": 0,
+    "Attack": 0,
+    "Defense": 0,
+    "Magic": 0,
+    "Difficulty": 0,
+    "primarystyle_perk1": [
+      "Conquerer",
+      "Press the Attack",
+      "Lethal Tempo",
+      "Hail of Blades",
+      "Grasp of the Undying"
+    ],
+
+    "main_minor_perks": {
+      "+": {
+        "perks": ["Demolish"],
+        "weight": 2
+      },
+      "-": {
+        "perks": [
+          "Triumph",
+          "Hail of Blades",
+          "Summon Aery",
+          "Arcane Comet",
+          "Phase Rush",
+          "Grasp of the Undying",
+          "Aftershock",
+          "Guardian",
+          "Unsealed Spellbook",
+          "Nimbus Cloak",
+          "Transcendence",
+          "Celerity",
+          "Absolute Focus",
+          "Waterwalking",
+          "Gathering Storm",
+          "Shield Bash",
+          "Conditioning",
+          "Second Wind",
+          "Bone Plating",
+          "Unflinching",
+          "Hextech Flashtraption",
+          "Magical Footwear",
+          "Cash Back",
+          "Time Warp Tonic",
+          "Biscuit Delivery",
+          "Cosmic Insight",
+          "Approach Velocity",
+          "Jack of all Trades"
+        ],
+        "weight": 1
+      }
+    },
+
+    "sub_minor_perks": {
+      "+": {
+        "perks": ["Cosmic Insight", "Approach Velocity"],
+        "weight": 2
+      },
+      "-": {
+        "perks": ["Triple Tonic", "Time Warp Tonic", "Biscuit Delivery"],
+        "weight": 1
+      }
+    }
+  },
+  "Paladin": {
+    "Kills": 1,
+    "Deaths": 0,
+    "Assists": 0,
+    "Damage": 1,
+    "CS": 0,
+    "KP_Rate": 0,
+    "Damage_share": 1,
+    "Objective_Focus": 0,
+    "Survivability_Ratio": 1,
+    "Vision_Efficiency": -1,
+    "CH_KDA": 1,
+    "CH_KillingSprees": 1,
+    "CH_TeamDamagePercentage": 1,
+    "CH_TurretTakedowns": 1,
+    "CH_BaronTakedowns": 1,
+    "CH_DragonTakedowns": 1,
+    "CH_enemyJungleMonsterKills": -1,
+    "CH_goldPerMinute": 0,
+    "CH_laningPhaseGoldExpAdvantage": 0,
+    "CH_MaxCsAdvantageOnLaneOpponent": 0,
+    "CH_DeathsbyEnemyChamps": 0,
+    "CH_damageTakenOnTeamPercentage": 1,
+    "CH_survivedSingleDigitHpCount": 0,
+    "CH_EffectiveHealandShielding": 0,
+    "CH_SaveAllyFromDeath": 0,
+    "CH_ImmobilizeandKillWithAlly": -1,
+    "CH_VisionScorePerMinute": -1,
+    "KPM": 1,
+    "DPM": 0,
+    "APM": -1,
+    "CSPM": 0,
+    "Attack": 1,
+    "Defense": 0,
+    "Magic": 1,
+    "Difficulty": -1,
+    "primarystyle_perk1": [
+      "Conquerer",
+      "Press the Attack",
+      "Electrocute",
+      "Dark Harvest",
+      "Grasp of the Undying",
+      "Guardian",
+      "First Strike"
+    ],
+
+    "main_minor_perks": {
+      "+": {
+        "perks": [
+          "Triumph",
+          "Cut Down",
+          "Last Stand",
+          "Ultimate Hunter",
+          "Demolish",
+          "Second Wind"
+        ],
+        "weight": 2
+      },
+      "-": {
+        "perks": [
+          "Sudden Impact",
+          "Relentless Hunter",
+          "Manaflow Band",
+          "Celerity",
+          "Absolute Focus",
+          "Waterwalking",
+          "Gathering Storm",
+          "Font of Life",
+          "Shield Bash",
+          "Conditioning",
+          "Overgrowth",
+          "Revitalize",
+          "Unflinching",
+          "Hextech Flashtraption",
+          "Magical Footwear",
+          "Cash Back",
+          "Time Warp Tonic",
+          "Biscuit Delivery",
+          "Cosmic Insight",
+          "Approach Velocity",
+          "Jack of all Trades"
+        ],
+        "weight": 1
+      }
+    },
+
+    "sub_minor_perks": {
+      "+": {
+        "perks": ["Cosmic Insight", "Approach Velocity"],
+        "weight": 2
+      },
+      "-": {
+        "perks": ["Triple Tonic", "Time Warp Tonic", "Biscuit Delivery"],
+        "weight": 1
+      }
+    }
+  },
+  "Ranger": {
+    "Kills": 1,
+    "Deaths": -1,
+    "Assists": 0,
+    "Damage": 0,
+    "CS": 0,
+    "KP_Rate": 0,
+    "Damage_share": 0,
+    "Objective_Focus": 1,
+    "Survivability_Ratio": -1,
+    "Vision_Efficiency": -1,
+    "CH_KDA": 1,
+    "CH_KillingSprees": 1,
+    "CH_TeamDamagePercentage": 0,
+    "CH_TurretTakedowns": 0,
+    "CH_BaronTakedowns": 1,
+    "CH_DragonTakedowns": 1,
+    "CH_enemyJungleMonsterKills": 0,
+    "CH_goldPerMinute": 0,
+    "CH_laningPhaseGoldExpAdvantage": 0,
+    "CH_MaxCsAdvantageOnLaneOpponent": 0,
+    "CH_DeathsbyEnemyChamps": 0,
+    "CH_damageTakenOnTeamPercentage": -1,
+    "CH_survivedSingleDigitHpCount": 0,
+    "CH_EffectiveHealandShielding": -1,
+    "CH_SaveAllyFromDeath": -1,
+    "CH_ImmobilizeandKillWithAlly": -1,
+    "CH_VisionScorePerMinute": -1,
+    "KPM": 1,
+    "DPM": -1,
+    "APM": -1,
+    "CSPM": 0,
+    "Attack": 0,
+    "Defense": -1,
+    "Magic": 0,
+    "Difficulty": -1,
+    "primarystyle_perk1": [
+      "Conquerer",
+      "Press the Attack",
+      "Fleet Footwork",
+      "Electrocute",
+      "Dark Harvest",
+      "Hail of Blades",
+      "Summon Aery",
+      "Arcane Comet",
+      "First Strike"
+    ],
+
+    "main_minor_perks": {
+      "+": {
+        "perks": ["Triumph", "Coup de Grace", "Treasure Hunter"],
+        "weight": 2
+      },
+      "-": {
+        "perks": [
+          "Cheap Shot",
+          "Sudden Impact",
+          "Relentless Hunter",
+          "Manaflow Band",
+          "Nimbus Cloak",
+          "Transcendence",
+          "Celerity",
+          "Absolute Focus",
+          "Waterwalking",
+          "Demolish",
+          "Shield Bash",
+          "Conditioning",
+          "Second Wind",
+          "Bone Plating",
+          "Overgrowth",
+          "Revitalize",
+          "Unflinching",
+          "Hextech Flashtraption",
+          "Magical Footwear",
+          "Cash Back",
+          "Time Warp Tonic",
+          "Biscuit Delivery",
+          "Cosmic Insight",
+          "Approach Velocity"
+        ],
+        "weight": 1
+      }
+    },
+
+    "sub_minor_perks": {
+      "+": {
+        "perks": ["Cosmic Insight", "Approach Velocity"],
+        "weight": 2
+      },
+      "-": {
+        "perks": ["Triple Tonic", "Time Warp Tonic", "Biscuit Delivery"],
+        "weight": 1
+      }
+    }
+  },
+  "Rogue": {
+    "Kills": 1,
+    "Deaths": -1,
+    "Assists": -1,
+    "Damage": 1,
+    "CS": 0,
+    "KP_Rate": 0,
+    "Damage_share": 1,
+    "Objective_Focus": 0,
+    "Survivability_Ratio": -1,
+    "Vision_Efficiency": -1,
+    "CH_KDA": 0,
+    "CH_KillingSprees": 1,
+    "CH_TeamDamagePercentage": 1,
+    "CH_TurretTakedowns": -1,
+    "CH_BaronTakedowns": -1,
+    "CH_DragonTakedowns": -1,
+    "CH_enemyJungleMonsterKills": 1,
+    "CH_goldPerMinute": 0,
+    "CH_laningPhaseGoldExpAdvantage": 0,
+    "CH_MaxCsAdvantageOnLaneOpponent": 0,
+    "CH_DeathsbyEnemyChamps": 0,
+    "CH_damageTakenOnTeamPercentage": 0,
+    "CH_survivedSingleDigitHpCount": 1,
+    "CH_EffectiveHealandShielding": -1,
+    "CH_SaveAllyFromDeath": -1,
+    "CH_ImmobilizeandKillWithAlly": -1,
+    "CH_VisionScorePerMinute": -1,
+    "KPM": 1,
+    "DPM": 0,
+    "APM": -1,
+    "CSPM": 0,
+    "Attack": 1,
+    "Defense": -1,
+    "Magic": -1,
+    "Difficulty": -1,
+    "primarystyle_perk1": [
+      "Electrocute",
+      "Dark Harvest",
+      "Hail of Blades",
+      "Grasp of the Undying",
+      "First Strike"
+    ],
+
+    "main_minor_perks": {
+      "+": {
+        "perks": [
+          "Cut Down",
+          "Cheap Shot",
+          "Sudden Impact",
+          "Treasure Hunter",
+          "Transcendence",
+          "Scorch",
+          "Hextech Flashtraption",
+          "Approach Velocity"
+        ],
+        "weight": 2
+      },
+      "-": {
+        "perks": [
+          "Triumph",
+          "Arcane Comet",
+          "Glacial Augment",
+          "Relentless Hunter",
+          "Ultimate Hunter",
+          "Absolute Focus",
+          "Waterwalking",
+          "Magical Footwear"
+        ],
+        "weight": 1
+      }
+    },
+
+    "sub_minor_perks": {
+      "+": {
+        "perks": ["Cosmic Insight", "Approach Velocity"],
+        "weight": 2
+      },
+      "-": {
+        "perks": ["Triple Tonic", "Time Warp Tonic", "Biscuit Delivery"],
+        "weight": 1
+      }
+    }
+  },
+  "Sorcerer": {
+    "Kills": 1,
+    "Deaths": 0,
+    "Assists": 1,
+    "Damage": 1,
+    "CS": 1,
+    "KP_Rate": 1,
+    "Damage_share": 1,
+    "Objective_Focus": 1,
+    "Survivability_Ratio": -1,
+    "Vision_Efficiency": 0,
+    "CH_KDA": 1,
+    "CH_KillingSprees": 1,
+    "CH_TeamDamagePercentage": 1,
+    "CH_TurretTakedowns": 0,
+    "CH_BaronTakedowns": 0,
+    "CH_DragonTakedowns": 0,
+    "CH_enemyJungleMonsterKills": 0,
+    "CH_goldPerMinute": 1,
+    "CH_laningPhaseGoldExpAdvantage": 1,
+    "CH_MaxCsAdvantageOnLaneOpponent": 0,
+    "CH_DeathsbyEnemyChamps": 0,
+    "CH_damageTakenOnTeamPercentage": -1,
+    "CH_survivedSingleDigitHpCount": -1,
+    "CH_EffectiveHealandShielding": -1,
+    "CH_SaveAllyFromDeath": -1,
+    "CH_ImmobilizeandKillWithAlly": -1,
+    "CH_VisionScorePerMinute": -1,
+    "KPM": 1,
+    "DPM": -1,
+    "APM": 1,
+    "CSPM": 1,
+    "Attack": -1,
+    "Defense": -1,
+    "Magic": 1,
+    "Difficulty": 1,
+    "primarystyle_perk1": [
+      "Electrocute",
+      "Dark Harvest",
+      "Summon Aery",
+      "Arcane Comet",
+      "Glacial Augment",
+      "Unsealed Spellbook"
+    ],
+
+    "main_minor_perks": {
+      "+": {
+        "perks": [
+          "Presence of Mind",
+          "Taste of Blood",
+          "Cut Down",
+          "Sudden Impact",
+          "Treasure Hunter",
+          "Ultimate Hunter",
+          "Manaflow Band",
+          "Transcendence",
+          "Celerity",
+          "Absolute Focus",
+          "Scorch",
+          "Waterwalking"
+        ],
+        "weight": 2
+      },
+      "-": {
+        "perks": [
+          "Triumph",
+          "Treasure Hunter",
+          "Gathering Storm",
+          "Demolish",
+          "Hextech Flashtraption"
+        ],
+        "weight": 1
+      }
+    },
+
+    "sub_minor_perks": {
+      "+": {
+        "perks": ["Cosmic Insight"],
+        "weight": 2
+      },
+      "-": {
+        "perks": ["Triple Tonic", "Time Warp Tonic", "Biscuit Delivery"],
+        "weight": 1
+      }
+    }
+  },
+  "Warlock": {
+    "Kills": 1,
+    "Deaths": -1,
+    "Assists": 1,
+    "Damage": 1,
+    "CS": 1,
+    "KP_Rate": 0,
+    "Damage_share": 1,
+    "Objective_Focus": 0,
+    "Survivability_Ratio": 0,
+    "Vision_Efficiency": -1,
+    "CH_KDA": 1,
+    "CH_KillingSprees": 1,
+    "CH_TeamDamagePercentage": 1,
+    "CH_TurretTakedowns": 0,
+    "CH_BaronTakedowns": 0,
+    "CH_DragonTakedowns": 0,
+    "CH_enemyJungleMonsterKills": -1,
+    "CH_goldPerMinute": 1,
+    "CH_laningPhaseGoldExpAdvantage": 1,
+    "CH_MaxCsAdvantageOnLaneOpponent": 1,
+    "CH_DeathsbyEnemyChamps": 0,
+    "CH_damageTakenOnTeamPercentage": 0,
+    "CH_survivedSingleDigitHpCount": -1,
+    "CH_EffectiveHealandShielding": -1,
+    "CH_SaveAllyFromDeath": -1,
+    "CH_ImmobilizeandKillWithAlly": 0,
+    "CH_VisionScorePerMinute": -1,
+    "KPM": 1,
+    "DPM": -1,
+    "APM": 0,
+    "CSPM": 1,
+    "Attack": -1,
+    "Defense": -1,
+    "Magic": 1,
+    "Difficulty": 0,
+    "primarystyle_perk1": [
+      "Electrocute",
+      "Dark Harvest",
+      "Summon Aery",
+      "Arcane Comet",
+      "Glacial Augment",
+      "First Strike"
+    ],
+
+    "main_minor_perks": {
+      "+": {
+        "perks": [
+          "Presence of Mind",
+          "Legend Haste",
+          "Sudden Impact",
+          "Treasure Hunter",
+          "Ultimate Hunter",
+          "Manaflow Band",
+          "Transcendence",
+          "Celerity",
+          "Absolute Focus",
+          "Scorch",
+          "Waterwalking"
+        ],
+        "weight": 2
+      },
+      "-": {
+        "perks": [
+          "Triumph",
+          "Cheap Shot",
+          "Relentless Hunter",
+          "Gathering Storm",
+          "Demolish",
+          "Hextech Flashtraption",
+          "Magical Footwear",
+          "Time Warp Tonic"
+        ],
+        "weight": 1
+      }
+    },
+
+    "sub_minor_perks": {
+      "+": {
+        "perks": ["Cosmic Insight"],
+        "weight": 2
+      },
+      "-": {
+        "perks": ["Triple Tonic", "Time Warp Tonic", "Biscuit Delivery"],
+        "weight": 1
+      }
+    }
+  },
+  "Wizard": {
+    "Kills": 1,
+    "Deaths": -1,
+    "Assists": 1,
+    "Damage": 1,
+    "CS": 1,
+    "KP_Rate": 1,
+    "Damage_share": 1,
+    "Objective_Focus": 1,
+    "Survivability_Ratio": -1,
+    "Vision_Efficiency": 0,
+    "CH_KDA": 1,
+    "CH_KillingSprees": 1,
+    "CH_TeamDamagePercentage": 1,
+    "CH_TurretTakedowns": 0,
+    "CH_BaronTakedowns": 0,
+    "CH_DragonTakedowns": 0,
+    "CH_enemyJungleMonsterKills": -1,
+    "CH_goldPerMinute": 1,
+    "CH_laningPhaseGoldExpAdvantage": 1,
+    "CH_MaxCsAdvantageOnLaneOpponent": 1,
+    "CH_DeathsbyEnemyChamps": 0,
+    "CH_damageTakenOnTeamPercentage": -1,
+    "CH_survivedSingleDigitHpCount": -1,
+    "CH_EffectiveHealandShielding": -1,
+    "CH_SaveAllyFromDeath": -1,
+    "CH_ImmobilizeandKillWithAlly": 0,
+    "CH_VisionScorePerMinute": 0,
+    "KPM": 1,
+    "DPM": -1,
+    "APM": 1,
+    "CSPM": 1,
+    "Attack": -1,
+    "Defense": -1,
+    "Magic": 1,
+    "Difficulty": 1,
+    "primarystyle_perk1": [
+      "Electrocute",
+      "Dark Harvest",
+      "Summon Aery",
+      "Arcane Comet",
+      "Unsealed Spellbook",
+      "First Strike"
+    ],
+
+    "main_minor_perks": {
+      "+": {
+        "perks": [
+          "Presence of Mind",
+          "Legend Haste",
+          "Cut Down",
+          "Taste of Blood",
+          "Treasure Hunter",
+          "Ultimate Hunter",
+          "Manaflow Band",
+          "Transcendence",
+          "Celerity",
+          "Absolute Focus",
+          "Waterwalking",
+          "Gathering Storm",
+          "Hextech Flashtraption",
+          "Approach Velocity"
+        ],
+        "weight": 2
+      },
+      "-": {
+        "perks": [
+          "Triumph",
+          "Cheap Shot",
+          "Deep Ward",
+          "Treasure Hunter",
+          "Demolish",
+          "Hextech Flashtraption",
+          "Magical Footwear",
+          "Triple Tonic"
+        ],
+        "weight": 1
+      }
+    },
+
+    "sub_minor_perks": {
+      "+": {
+        "perks": ["Cosmic Insight"],
+        "weight": 2
+      },
+      "-": {
+        "perks": ["Time Warp Tonic", "Biscuit Delivery"],
+        "weight": 1
+      }
+    }
+  }
+}

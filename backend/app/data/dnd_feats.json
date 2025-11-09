@@ -1,0 +1,214 @@
+{
+  "feats": [
+    {
+      "name": "Ability Improvements",
+      "effects": "You increase one Ability by 2, or two Abilities by 1, to a maximum of 20.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Actor",
+      "effects": "Your Charisma increases by 1, to a maximum of 20. Your Proficiency Bonus is also doubled for Deception and Performance Checks. Grants Deception Proficiency and Performance Proficiency.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Alert",
+      "effects": "You gain a +5 bonus to Initiative and can't be Surprised.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Athlete",
+      "effects": "Your Strength or Dexterity increases by 1, to a maximum of 20. When you are Prone, standing up uses significantly less movement. Your jump distance also increases by 50%.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Charger",
+      "effects": "You gain Charger: Weapon Attack and Charger: Shove.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Crossbow Expert",
+      "effects": "When you make crossbow attacks within melee range, the Attack Rolls do not have Disadvantage. Your Piercing Shot also inflicts Gaping Wounds for twice as long.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Defensive Duelist",
+      "effects": "When attacked while wielding a Finesse Weapon you're Proficient with, you can use a reaction to add your Proficiency Bonus to your Armour Class, possibly causing the attack to miss.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Dual Wielder",
+      "effects": "You can use Two-Weapon Fighting even if your weapons aren't Light, and you gain a +1 bonus to Armour Class while wielding a melee weapon in each hand. You cannot dual-wield Heavy Weapons.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Dungeon Delver",
+      "effects": "You gain Advantage on Perception Checks made to detect hidden objects and on Saving Throws made to avoid or resist traps. You gain Resistance to the damage dealt by traps.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Durable",
+      "effects": "Your Constitution increases by 1, to a maximum of 20. You regain full hit points each time you take a Short Rest.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Elemental Adept",
+      "effects": "Your spells ignore Resistance to a damage type of your choice. When you cast spells of that type, you cannot roll a 1. Choose one: Acid, Cold, Fire, Lightning, or Thunder.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Great Weapon Master",
+      "effects": "When you land a Critical Hit or kill a target with a melee weapon attack, you can make another melee weapon attack as a bonus action that turn. Attacks with Heavy melee weapons can deal +10 damage at the cost of a -5 Attack Roll penalty.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Heavily Armoured",
+      "effects": "You gain Armour Proficiency with Heavy Armour and your Strength increases by 1, to a maximum of 20.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Heavy Armour Master",
+      "effects": "Your Strength increases by 1, to a maximum of 20. Incoming damage from non-magical attacks decreases by 3 while you're wearing heavy armour.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Lightly Armoured",
+      "effects": "You gain Armour Proficiency with Light Armour and your Strength or Dexterity increases by 1, to a maximum of 20.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Lucky",
+      "effects": "You gain 3 Luck Points to gain Advantage on Attack Rolls, Ability Checks, or Saving Throws, or to make an enemy reroll an Attack Roll.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Mage Slayer",
+      "effects": "When a creature casts a spell within melee range, you have Advantage on any Saving Throw against it, and you can use a reaction to immediately attack the caster. Enemies you hit have Disadvantage on Concentration Saving Throws.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Magic Initiate: Bard",
+      "effects": "Learn 2 Cantrips and 1 Level 1 spell from the Bard spell list. Cast the Level 1 spell once per Long Rest. Spellcasting Ability: Charisma.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Magic Initiate: Cleric",
+      "effects": "Learn 2 Cantrips and 1 Level 1 spell from the Cleric spell list. Cast the Level 1 spell once per Long Rest. Spellcasting Ability: Wisdom.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Magic Initiate: Druid",
+      "effects": "Learn 2 Cantrips and 1 Level 1 spell from the Druid spell list. Cast the Level 1 spell once per Long Rest. Spellcasting Ability: Wisdom.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Magic Initiate: Sorcerer",
+      "effects": "Learn 2 Cantrips and 1 Level 1 spell from the Sorcerer spell list. Cast the Level 1 spell once per Long Rest. Spellcasting Ability: Charisma.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Magic Initiate: Warlock",
+      "effects": "Learn 2 Cantrips and 1 Level 1 spell from the Warlock spell list. Cast the Level 1 spell once per Long Rest. Spellcasting Ability: Charisma.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Magic Initiate: Wizard",
+      "effects": "Learn 2 Cantrips and 1 Level 1 spell from the Wizard spell list. Cast the Level 1 spell once per Long Rest. Spellcasting Ability: Intelligence.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Martial Adept",
+      "effects": "Learn two manoeuvres from the Battle Master subclass and gain one Superiority Die to fuel them. Regain expended dice after a Short or Long Rest.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Medium Armour Master",
+      "effects": "Wearing Medium Armour no longer imposes Disadvantage on Stealth Checks. The Dexterity bonus to AC increases to +3 instead of +2.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Mobile",
+      "effects": "Your movement speed increases. Difficult terrain doesn’t slow you when Dashing. If you move after a melee attack, you don’t provoke Opportunity Attacks from that target.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Moderately Armoured",
+      "effects": "Gain Proficiency with Medium Armour and shields, and increase Strength or Dexterity by 1, to a maximum of 20.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Observant",
+      "effects": "Increase Intelligence or Wisdom by 1, to a maximum of 20. Gain +5 to passive Perception and passive Investigation.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Performer",
+      "effects": "Gain Musical Instrument Proficiency and increase Charisma by 1, to a maximum of 20.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Polearm Master",
+      "effects": "When attacking with a glaive, halberd, quarterstaff, or spear, you can make a bonus action attack with the butt of your weapon and make an Opportunity Attack when a target enters range.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Resilient",
+      "effects": "Increase one Ability by 1, to a maximum of 20, and gain Proficiency in that Ability's Saving Throws.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Ritual Caster",
+      "effects": "Learn two ritual spells of your choice. Requires Intelligence or Wisdom 13+.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Savage Attacker",
+      "effects": "When making weapon attacks, roll damage dice twice and use the higher result.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Sentinel",
+      "effects": "When an enemy within melee range attacks an ally, you can use a reaction to attack that enemy. Gain Advantage on Opportunity Attacks; hit targets can’t move for the rest of their turn.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Sharpshooter",
+      "effects": "Ranged weapon attacks ignore penalties from High Ground Rules. You may take a -5 penalty to Attack Rolls to deal +10 damage.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Shield Master",
+      "effects": "Gain +2 to Dexterity Saving Throws while wielding a shield. When a spell forces a Dexterity Save, you can use a reaction to halve or negate damage.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Skilled",
+      "effects": "Gain Proficiency in 3 Skills of your choice.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Spell Sniper",
+      "effects": "Learn a cantrip. Your spell critical hit range improves by 1 (can stack). Requires Spellcasting ability.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Tavern Brawler",
+      "effects": "Unarmed and improvised weapon attacks add Strength Modifier twice to damage and Attack Rolls. You also gain +1 Strength or Constitution.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Tough",
+      "effects": "Your hit point maximum increases by 2 for every level you have gained.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "War Caster",
+      "effects": "Gain Advantage on Saving Throws to maintain Concentration. You can use a reaction to cast Shocking Grasp when a creature leaves melee range.",
+      "requirements": "All Classes Lvl 4"
+    },
+    {
+      "name": "Weapon Master",
+      "effects": "Gain Proficiency with four weapons of your choice, and increase Strength or Dexterity by 1, to a maximum of 20.",
+      "requirements": "All Classes Lvl 4"
+    }
+  ]
+}

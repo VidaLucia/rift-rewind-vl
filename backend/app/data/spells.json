@@ -1,0 +1,442 @@
+{
+  "bard": {
+    "1": [
+      { "name": "Charm Person", "tags": ["ionia"] },
+      { "name": "Faerie Fire", "tags": ["ionia"] },
+      { "name": "Healing Word", "tags": ["demacia", "targon"] },
+      { "name": "Tasha's Hideous Laughter", "tags": ["ionia", "shadow_isles"] },
+      { "name": "Sleep", "tags": ["piltover", "shadow_isles"] }
+    ],
+    "2": [
+      { "name": "Cloud of Daggers", "tags": ["piltover"] },
+      { "name": "Invisibility", "tags": ["ionia"] },
+      { "name": "Misty Step", "tags": ["ionia"] },
+      { "name": "Mirror Image", "tags": ["ionia"] },
+      { "name": "Web", "tags": ["shadow_isles", "ixtal"] }
+    ],
+    "3": [
+      { "name": "Fireball", "tags": ["noxus", "shurima"] },
+      { "name": "Lightning Bolt", "tags": ["piltover", "freljord"] },
+      { "name": "Counterspell", "tags": ["piltover", "targon"] },
+      { "name": "Fly", "tags": ["piltover", "ionia"] },
+      { "name": "Slow", "tags": ["freljord", "ionia"] }
+    ],
+    "4": [
+      { "name": "Polymorph", "tags": ["ixtal", "ionia"] },
+      { "name": "Greater Invisibility", "tags": ["ionia", "bilgewater"] },
+      { "name": "Stoneskin", "tags": ["ixtal", "freljord"] },
+      { "name": "Wall of Fire", "tags": ["noxus", "shurima"] },
+      { "name": "Ice Storm", "tags": ["freljord"] }
+    ],
+    "5": [
+      { "name": "Cone of Cold", "tags": ["freljord"] },
+      { "name": "Wall of Stone", "tags": ["ixtal"] },
+      { "name": "Teleportation", "tags": ["piltover", "ionia"] },
+      { "name": "Dominate Person", "tags": ["noxus"] },
+      { "name": "Hold Monster", "tags": ["shadow_isles", "noxus"] }
+    ],
+    "6": [
+      { "name": "Chain Lightning", "tags": ["piltover", "freljord"] },
+      { "name": "Disintegrate", "tags": ["piltover", "noxus"] },
+      { "name": "Globe of Invulnerability", "tags": ["piltover", "targon"] },
+      { "name": "Sunbeam", "tags": ["targon", "demacia"] },
+      { "name": "Flesh to Stone", "tags": ["ixtal", "shurima"] }
+    ],
+    "7": [],
+    "8": [],
+    "9": []
+  },
+
+  "cleric": {
+    "1": [
+      { "name": "Bless", "tags": ["demacia", "targon"] },
+      { "name": "Cure Wounds", "tags": ["demacia", "freljord"] },
+      { "name": "Shield of Faith", "tags": ["demacia", "ionia"] },
+      { "name": "Sanctuary", "tags": ["targon", "demacia"] },
+      { "name": "Guiding Bolt", "tags": ["targon", "demacia"] },
+      { "name": "Protection from Evil and Good", "tags": ["demacia", "targon", "freljord"] }
+    ],
+    "2": [
+      { "name": "Aid", "tags": ["demacia", "targon"] },
+      { "name": "Lesser Restoration", "tags": ["demacia", "ionia"] },
+      { "name": "Prayer of Healing", "tags": ["demacia", "targon"] },
+      { "name": "Spiritual Weapon", "tags": ["targon", "demacia"] },
+      { "name": "Warding Bond", "tags": ["demacia"] }
+    ],
+    "3": [
+      { "name": "Beacon of Hope", "tags": ["demacia", "targon"] },
+      { "name": "Revivify", "tags": ["targon", "demacia"] },
+      { "name": "Spirit Guardians", "tags": ["targon", "shadow_isles"] },
+      { "name": "Remove Curse", "tags": ["shadow_isles", "demacia"] },
+      { "name": "Daylight", "tags": ["demacia", "targon"] }
+    ],
+    "4": [
+      { "name": "Guardian of Faith", "tags": ["demacia", "targon"] },
+      { "name": "Death Ward", "tags": ["shadow_isles", "targon"] },
+      { "name": "Freedom of Movement", "tags": ["freljord", "ionia"] },
+      { "name": "Banishment", "tags": ["targon", "demacia"] },
+      { "name": "Divine Guardian", "tags": ["demacia", "targon"] }
+    ],
+    "5": [
+      { "name": "Flame Strike", "tags": ["targon", "demacia"] },
+      { "name": "Mass Cure Wounds", "tags": ["demacia", "ionia"] },
+      { "name": "Greater Restoration", "tags": ["targon", "demacia"] },
+      { "name": "Dispel Evil and Good", "tags": ["demacia"] },
+      { "name": "Planar Binding", "tags": ["targon"] }
+    ],
+    "6": [
+      { "name": "Heal", "tags": ["targon", "demacia"] },
+      { "name": "Harm", "tags": ["shadow_isles", "noxus"] },
+      { "name": "Blade Barrier", "tags": ["demacia"] },
+      { "name": "Sunbeam", "tags": ["targon", "demacia"] },
+      { "name": "Heroes' Feast", "tags": ["targon", "demacia"] }
+    ],
+    "7": [],
+    "8": [],
+    "9": []
+  },
+
+  "druid": {
+    "1": [
+      { "name": "Entangle", "tags": ["ixtal", "freljord"] },
+      { "name": "Faerie Fire", "tags": ["ionia"] },
+      { "name": "Goodberry", "tags": ["freljord", "ionia"] },
+      { "name": "Speak with Animals", "tags": ["freljord", "ionia"] },
+      { "name": "Fog Cloud", "tags": ["freljord", "bilgewater"] }
+    ],
+    "2": [
+      { "name": "Flaming Sphere", "tags": ["noxus"] },
+      { "name": "Moonbeam", "tags": ["freljord"] },
+      { "name": "Pass without Trace", "tags": ["ionia"] },
+      { "name": "Gust of Wind", "tags": ["piltover", "freljord"] },
+      { "name": "Invisibility", "tags": ["ionia"] }
+    ],
+    "3": [
+      { "name": "Call Lightning", "tags": ["freljord"] },
+      { "name": "Plant Growth", "tags": ["ixtal"] },
+      { "name": "Remove Curse", "tags": ["shadow_isles"] },
+      { "name": "Water Breathing", "tags": ["ixtal"] },
+      { "name": "Wind Wall", "tags": ["piltover"] }
+    ],
+    "4": [
+      { "name": "Polymorph", "tags": ["ionia", "ixtal"] },
+      { "name": "Ice Storm", "tags": ["freljord"] },
+      { "name": "Stone Shape", "tags": ["ixtal"] },
+      { "name": "Freedom of Movement", "tags": ["ionia", "freljord"] },
+      { "name": "Guardian of Nature", "tags": ["ixtal"] }
+    ],
+    "5": [
+      { "name": "Tree Stride", "tags": ["ixtal", "ionia"] },
+      { "name": "Reincarnate", "tags": ["ixtal"] },
+      { "name": "Mass Cure Wounds", "tags": ["demacia"] },
+      { "name": "Wall of Stone", "tags": ["ixtal"] },
+      { "name": "Commune with Nature", "tags": ["ixtal"] }
+    ],
+    "6": [
+      { "name": "Transport via Plants", "tags": ["ixtal"] },
+      { "name": "Bones of the Earth", "tags": ["shurima"] },
+      { "name": "Heal", "tags": ["targon", "demacia"] },
+      { "name": "Move Earth", "tags": ["ixtal"] },
+      { "name": "Sunbeam", "tags": ["targon"] }
+    ],
+    "7": [],
+    "8": [],
+    "9": []
+  },
+
+  "paladin": {
+    "1": [
+      { "name": "Divine Favor", "tags": ["targon", "demacia"] },
+      { "name": "Shield of Faith", "tags": ["demacia"] },
+      { "name": "Bless", "tags": ["demacia", "targon"] },
+      { "name": "Searing Smite", "tags": ["noxus"] },
+      { "name": "Thunderous Smite", "tags": ["noxus"] }
+    ],
+    "2": [
+      { "name": "Magic Weapon", "tags": ["piltover", "targon"] },
+      { "name": "Lesser Restoration", "tags": ["demacia"] },
+      { "name": "Aid", "tags": ["demacia"] },
+      { "name": "Branding Smite", "tags": ["noxus"] },
+      { "name": "Wrathful Smite", "tags": ["noxus"] }
+    ],
+    "3": [
+      { "name": "Spirit Guardians", "tags": ["targon", "demacia"] },
+      { "name": "Revivify", "tags": ["targon"] },
+      { "name": "Daylight", "tags": ["targon"] },
+      { "name": "Aura of Life", "tags": ["targon"] },
+      { "name": "Aura of Vitality", "tags": ["targon"] }
+    ],
+    "4": [
+      { "name": "Stoneskin", "tags": ["ixtal", "targon"] },
+      { "name": "Death Ward", "tags": ["shadow_isles", "targon"] },
+      { "name": "Freedom of Movement", "tags": ["ionia", "targon"] },
+      { "name": "Banishment", "tags": ["targon", "demacia"] },
+      { "name": "Guardian of Faith", "tags": ["demacia", "targon"] }
+    ],
+    "5": [
+      { "name": "Flame Strike", "tags": ["targon", "demacia"] },
+      { "name": "Mass Cure Wounds", "tags": ["demacia"] },
+      { "name": "Circle of Power", "tags": ["demacia"] },
+      { "name": "Commune", "tags": ["targon"] },
+      { "name": "Destructive Wave", "tags": ["shurima"] }
+    ],
+    "6": [
+      { "name": "Heal", "tags": ["targon", "demacia"] },
+      { "name": "Blade Barrier", "tags": ["demacia"] },
+      { "name": "Word of Recall", "tags": ["demacia"] },
+      { "name": "True Seeing", "tags": ["ionia"] },
+      { "name": "Sunbeam", "tags": ["targon"] }
+    ],
+    "7": [],
+    "8": [],
+    "9": []
+  },
+
+  "ranger": {
+    "1": [
+      { "name": "Hunter's Mark", "tags": ["ionia", "freljord"] },
+      { "name": "Hail of Thorns", "tags": ["ionia"] },
+      { "name": "Goodberry", "tags": ["freljord"] },
+      { "name": "Entangle", "tags": ["ixtal", "freljord"] },
+      { "name": "Speak with Animals", "tags": ["freljord"] }
+    ],
+    "2": [
+      { "name": "Pass without Trace", "tags": ["ionia"] },
+      { "name": "Lesser Restoration", "tags": ["demacia"] },
+      { "name": "Misty Step", "tags": ["ionia"] },
+      { "name": "Flame Blade", "tags": ["noxus"] },
+      { "name": "Spike Growth", "tags": ["ixtal"] }
+    ],
+    "3": [
+      { "name": "Conjure Barrage", "tags": ["ixtal"] },
+      { "name": "Lightning Arrow", "tags": ["piltover"] },
+      { "name": "Fly", "tags": ["ionia"] },
+      { "name": "Plant Growth", "tags": ["ixtal"] },
+      { "name": "Water Breathing", "tags": ["ixtal"] }
+    ],
+    "4": [
+      { "name": "Freedom of Movement", "tags": ["ionia", "freljord"] },
+      { "name": "Stoneskin", "tags": ["ixtal", "freljord"] },
+      { "name": "Ice Storm", "tags": ["freljord"] },
+      { "name": "Polymorph", "tags": ["ionia", "ixtal"] },
+      { "name": "Wall of Fire", "tags": ["noxus"] }
+    ],
+    "5": [
+      { "name": "Cone of Cold", "tags": ["freljord"] },
+      { "name": "Wall of Stone", "tags": ["ixtal"] },
+      { "name": "Hold Monster", "tags": ["shadow_isles"] },
+      { "name": "Dominate Person", "tags": ["noxus"] },
+      { "name": "Teleportation", "tags": ["piltover"] }
+    ],
+    "6": [
+      { "name": "Chain Lightning", "tags": ["piltover", "freljord"] },
+      { "name": "Sunbeam", "tags": ["targon"] },
+      { "name": "Mass Cure Wounds", "tags": ["demacia"] },
+      { "name": "Globe of Invulnerability", "tags": ["piltover"] },
+      { "name": "True Seeing", "tags": ["ionia"] }
+    ],
+    "7": [],
+    "8": [],
+    "9": []
+  },
+
+  "sorcerer": {
+    "1": [
+      { "name": "Magic Missile", "tags": ["piltover", "ionia"] },
+      { "name": "Shield", "tags": ["piltover"] },
+      { "name": "Chromatic Orb", "tags": ["ixtal", "ionia"] },
+      { "name": "Burning Hands", "tags": ["noxus", "shurima"] },
+      { "name": "Mage Armour", "tags": ["piltover"] }
+    ],
+    "2": [
+      { "name": "Scorching Ray", "tags": ["noxus", "shurima"] },
+      { "name": "Mirror Image", "tags": ["ionia"] },
+      { "name": "Misty Step", "tags": ["ionia"] },
+      { "name": "Web", "tags": ["shadow_isles"] },
+      { "name": "Arcane Lock", "tags": ["piltover"] }
+    ],
+    "3": [
+      { "name": "Fireball", "tags": ["noxus", "shurima"] },
+      { "name": "Lightning Bolt", "tags": ["piltover", "freljord"] },
+      { "name": "Fly", "tags": ["ionia"] },
+      { "name": "Slow", "tags": ["freljord", "ionia"] },
+      { "name": "Counterspell", "tags": ["piltover"] }
+    ],
+    "4": [
+      { "name": "Polymorph", "tags": ["ixtal", "ionia"] },
+      { "name": "Greater Invisibility", "tags": ["ionia"] },
+      { "name": "Ice Storm", "tags": ["freljord"] },
+      { "name": "Stoneskin", "tags": ["ixtal"] },
+      { "name": "Wall of Fire", "tags": ["noxus"] }
+    ],
+    "5": [
+      { "name": "Teleportation", "tags": ["piltover"] },
+      { "name": "Dominate Person", "tags": ["noxus"] },
+      { "name": "Hold Monster", "tags": ["shadow_isles"] },
+      { "name": "Cone of Cold", "tags": ["freljord"] },
+      { "name": "Wall of Stone", "tags": ["ixtal"] }
+    ],
+    "6": [
+      { "name": "Chain Lightning", "tags": ["piltover"] },
+      { "name": "Disintegrate", "tags": ["piltover", "noxus"] },
+      { "name": "Globe of Invulnerability", "tags": ["piltover", "targon"] },
+      { "name": "Sunbeam", "tags": ["targon"] },
+      { "name": "Flesh to Stone", "tags": ["ixtal", "shurima"] }
+    ],
+    "7": [],
+    "8": [],
+    "9": []
+  },
+
+  "warlock": {
+    "1": [
+      { "name": "Hellish Rebuke", "tags": ["noxus", "shadow_isles"] },
+      { "name": "Hex", "tags": ["shadow_isles", "ionia"] },
+      { "name": "Arms of Hadar", "tags": ["shadow_isles"] },
+      { "name": "Command (Halt)", "tags": ["piltover"] },
+      { "name": "Charm Person", "tags": ["ionia"] }
+    ],
+    "2": [
+      { "name": "Invisibility", "tags": ["ionia"] },
+      { "name": "Darkness", "tags": ["shadow_isles", "noxus"] },
+      { "name": "Misty Step", "tags": ["ionia"] },
+      { "name": "Ray of Enfeeblement", "tags": ["shadow_isles"] },
+      { "name": "Agonising Blast", "tags": ["noxus"] }
+    ],
+    "3": [
+      { "name": "Counterspell", "tags": ["piltover"] },
+      { "name": "Fireball", "tags": ["noxus", "shurima"] },
+      { "name": "Fly", "tags": ["ionia"] },
+      { "name": "Hunger of Hadar", "tags": ["shurima"] },
+      { "name": "Lightning Bolt", "tags": ["piltover"] }
+    ],
+    "4": [
+      { "name": "Banishment", "tags": ["targon", "shadow_isles"] },
+      { "name": "Dimension Door", "tags": ["piltover"] },
+      { "name": "Polymorph", "tags": ["ionia", "ixtal"] },
+      { "name": "Greater Invisibility", "tags": ["ionia"] },
+      { "name": "Stoneskin", "tags": ["ixtal"] }
+    ],
+    "5": [
+      { "name": "Teleportation", "tags": ["piltover"] },
+      { "name": "Dominate Person", "tags": ["noxus"] },
+      { "name": "Cone of Cold", "tags": ["freljord"] },
+      { "name": "Hold Monster", "tags": ["shadow_isles"] },
+      { "name": "Wall of Stone", "tags": ["ixtal"] }
+    ],
+    "6": [
+      { "name": "Chain Lightning", "tags": ["piltover"] },
+      { "name": "Sunbeam", "tags": ["targon"] },
+      { "name": "True Resurrection", "tags": ["targon"] },
+      { "name": "Mass Heal", "tags": ["demacia"] },
+      { "name": "Blade Barrier", "tags": ["demacia"] }
+    ],
+    "7": [],
+    "8": [],
+    "9": []
+  },
+
+  "artificer": {
+    "1": [
+      { "name": "Mending", "tags": ["piltover"] },
+      { "name": "Mage Hand", "tags": ["piltover", "ionia"] },
+      { "name": "Light", "tags": ["piltover"] },
+      { "name": "Thunderwave", "tags": ["freljord"] },
+      { "name": "Magic Missile", "tags": ["piltover"] }
+    ],
+    "2": [
+      { "name": "Shield", "tags": ["piltover"] },
+      { "name": "Mirror Image", "tags": ["ionia"] },
+      { "name": "Web", "tags": ["shadow_isles"] },
+      { "name": "Invisibility", "tags": ["ionia"] },
+      { "name": "Scorching Ray", "tags": ["noxus"] }
+    ],
+    "3": [
+      { "name": "Misty Step", "tags": ["ionia"] },
+      { "name": "Fly", "tags": ["ionia"] },
+      { "name": "Fireball", "tags": ["noxus"] },
+      { "name": "Lightning Bolt", "tags": ["piltover", "freljord"] },
+      { "name": "Wall of Fire", "tags": ["noxus"] }
+    ],
+    "4": [
+      { "name": "Polymorph", "tags": ["ionia", "ixtal"] },
+      { "name": "Stoneskin", "tags": ["ixtal"] },
+      { "name": "Ice Storm", "tags": ["freljord"] },
+      { "name": "Freedom of Movement", "tags": ["ionia", "freljord"] },
+      { "name": "Wall of Stone", "tags": ["ixtal"] }
+    ],
+    "5": [
+      { "name": "Cone of Cold", "tags": ["freljord"] },
+      { "name": "Teleportation", "tags": ["piltover", "ionia"] },
+      { "name": "Dominate Person", "tags": ["noxus"] },
+      { "name": "Hold Monster", "tags": ["shadow_isles"] },
+      { "name": "Mass Cure Wounds", "tags": ["demacia"] }
+    ],
+    "6": [
+      { "name": "Chain Lightning", "tags": ["piltover", "freljord"] },
+      { "name": "Sunbeam", "tags": ["targon"] },
+      { "name": "True Resurrection", "tags": ["targon"] },
+      { "name": "Blade Barrier", "tags": ["demacia"] },
+      { "name": "Globe of Invulnerability", "tags": ["piltover"] }
+    ],
+    "7": [],
+    "8": [],
+    "9": []
+  },
+  "wizard": {
+  "1": [
+    { "name": "Mage Armour", "tags": ["piltover", "ionia"] },
+    { "name": "Magic Missile", "tags": ["piltover"] },
+    { "name": "Shield", "tags": ["piltover", "demacia"] },
+    { "name": "Chromatic Orb", "tags": ["ixtal", "ionia"] },
+    { "name": "Burning Hands", "tags": ["noxus", "shurima"] },
+    { "name": "Ray of Sickness", "tags": ["shadow_isles", "noxus"] },
+    { "name": "Disguise Self", "tags": ["ionia"] }
+  ],
+  "2": [
+    { "name": "Scorching Ray", "tags": ["noxus", "shurima"] },
+    { "name": "Mirror Image", "tags": ["ionia"] },
+    { "name": "Misty Step", "tags": ["ionia"] },
+    { "name": "Web", "tags": ["shadow_isles"] },
+    { "name": "Blur", "tags": ["ionia"] },
+    { "name": "Invisibility", "tags": ["ionia"] },
+    { "name": "Knock", "tags": ["piltover"] }
+  ],
+  "3": [
+    { "name": "Fireball", "tags": ["noxus", "shurima"] },
+    { "name": "Counterspell", "tags": ["piltover", "targon"] },
+    { "name": "Lightning Bolt", "tags": ["piltover", "freljord"] },
+    { "name": "Fly", "tags": ["ionia"] },
+    { "name": "Haste", "tags": ["piltover", "demacia"] },
+    { "name": "Slow", "tags": ["freljord", "ionia"] },
+    { "name": "Hypnotic Pattern", "tags": ["ionia", "shadow_isles"] }
+  ],
+  "4": [
+    { "name": "Polymorph", "tags": ["ixtal", "ionia"] },
+    { "name": "Greater Invisibility", "tags": ["ionia", "bilgewater"] },
+    { "name": "Ice Storm", "tags": ["freljord"] },
+    { "name": "Stoneskin", "tags": ["ixtal", "freljord"] },
+    { "name": "Dimension Door", "tags": ["piltover", "ionia"] },
+    { "name": "Wall of Fire", "tags": ["noxus", "shurima"] }
+  ],
+  "5": [
+    { "name": "Cone of Cold", "tags": ["freljord"] },
+    { "name": "Wall of Stone", "tags": ["ixtal"] },
+    { "name": "Hold Monster", "tags": ["shadow_isles"] },
+    { "name": "Dominate Person", "tags": ["noxus"] },
+    { "name": "Teleportation", "tags": ["piltover", "ionia"] },
+    { "name": "Wall of Force", "tags": ["piltover", "demacia"] }
+  ],
+  "6": [
+    { "name": "Chain Lightning", "tags": ["piltover", "freljord"] },
+    { "name": "Disintegrate", "tags": ["piltover", "noxus"] },
+    { "name": "Globe of Invulnerability", "tags": ["piltover", "targon"] },
+    { "name": "Sunbeam", "tags": ["targon", "demacia"] },
+    { "name": "Flesh to Stone", "tags": ["ixtal", "shurima"] },
+    { "name": "Wall of Ice", "tags": ["freljord"] }
+  ],
+  "7": [],
+  "8": [],
+  "9": []
+    }
+}
