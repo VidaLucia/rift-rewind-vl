@@ -2,7 +2,7 @@
 # timeline_pipeline_service.py
 # =======================================================
 import asyncio
-from scripts.timeline_pipeline import grab_timeline
+from backend.scripts.timeline_pipeline import grab_timeline
 
 async def run_timeline_pipeline_service(region: str, match_id: str, puuid: str):
     """

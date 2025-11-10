@@ -172,52 +172,88 @@ def compute_top_champions(df: pd.DataFrame, player_name: str):
 
 def compute_dnd_class(df: pd.DataFrame, player_name: str, mapping_path: str):
     """
-    Determine player's dominant D&D class based on their clusters.
-    Uses the player-specific cluster→class mapping if available.
+    Determine player's dominant D&D class based on existing cluster→class mapping.
+    Falls back to on-the-fly similarity computation if mapping is missing.
     """
+    from sklearn.metrics.pairwise import cosine_similarity
+    import json
 
-    # Prefer player-specific mapping file if it exists
     player_map_path = os.path.join(DATA_DIR, f"{player_name}_cluster_dnd_mapping.csv")
     map_to_use = player_map_path if os.path.exists(player_map_path) else mapping_path
     print(f"[DEBUG] Using D&D mapping file: {map_to_use}")
-    if not os.path.exists(map_to_use):
-        print(f"[WARN] Missing D&D mapping at {map_to_use}")
-        return {"player_name": player_name, "DND_Class": None, "Weighted_Share": 0.0}
 
-    dnd_map = pd.read_csv(map_to_use)
+    # ✅ Case 1: mapping file exists — use your stable reweighting logic
+    if os.path.exists(map_to_use):
+        dnd_map = pd.read_csv(map_to_use)
 
-    # Ensure clusters are comparable
-    if "cluster" not in dnd_map.columns:
-        print(f"[ERROR] Mapping file {map_to_use} missing 'cluster' column.")
-        return {"player_name": player_name, "DND_Class": None, "Weighted_Share": 0.0}
+        if "cluster" not in dnd_map.columns or "DND_Class" not in dnd_map.columns:
+            print(f"[ERROR] Invalid mapping file: {map_to_use}")
+            return {"player_name": player_name, "DND_Class": None, "Weighted_Share": 0.0}
 
-    df["cluster"] = df["cluster"].astype(int, errors="ignore")
-    dnd_map["cluster"] = dnd_map["cluster"].astype(int, errors="ignore")
+        df["cluster"] = df["cluster"].astype(int, errors="ignore")
+        dnd_map["cluster"] = dnd_map["cluster"].astype(int, errors="ignore")
 
-    # Compute weighted distribution
-    cluster_counts = df["cluster"].value_counts(normalize=True) * 100
-    cluster_df = cluster_counts.reset_index()
-    cluster_df.columns = ["cluster", "Weighted_Share"]
+        cluster_counts = df["cluster"].value_counts(normalize=True) * 100
+        cluster_df = cluster_counts.reset_index()
+        cluster_df.columns = ["cluster", "Weighted_Share"]
 
-    merged = cluster_df.merge(dnd_map[["cluster", "DND_Class"]], on="cluster", how="left")
+        merged = cluster_df.merge(dnd_map[["cluster", "DND_Class"]], on="cluster", how="left")
+        merged = merged.dropna(subset=["DND_Class"])
 
-    # Sanity check
-    if merged["DND_Class"].isna().all():
-        print(f"[ERROR] No cluster matches found in {map_to_use}.")
-        print(merged)
-        return {"player_name": player_name, "DND_Class": None, "Weighted_Share": 0.0}
+        if merged.empty:
+            print(f"[WARN] No cluster matches found in {map_to_use}.")
+            return {"player_name": player_name, "DND_Class": None, "Weighted_Share": 0.0}
 
-    merged = merged.dropna(subset=["DND_Class"])
-    top_row = merged.sort_values("Weighted_Share", ascending=False).iloc[0]
+        # Get top class + optionally save top 3
+        merged_summary = (
+            merged.groupby("DND_Class", as_index=False)["Weighted_Share"].sum()
+            .sort_values("Weighted_Share", ascending=False)
+        )
+        top_classes = merged_summary.head(3).to_dict(orient="records")
 
-    print(f"[INFO] Top D&D class for {player_name}: {top_row['DND_Class']} ({top_row['Weighted_Share']:.1f}%)")
+        top_row = merged_summary.iloc[0]
+        print(f"[INFO] Top D&D class for {player_name}: {top_row['DND_Class']} ({top_row['Weighted_Share']:.1f}%)")
 
-    return {
-        "player_name": player_name,
-        "DND_Class": str(top_row["DND_Class"]),
-        "Weighted_Share": round(top_row["Weighted_Share"], 2),
-    }
+        # ✅ Write out the weighted summary for UI
+        APP_DATA_DIR = BASE_DIR / "backend" / "app" / "data"
+        summary_path = APP_DATA_DIR / "dnd_class_summary_weighted.csv"
+        os.makedirs(APP_DATA_DIR, exist_ok=True)
+        merged_summary.to_csv(summary_path, index=False)
+        print(f"[INFO] Wrote weighted summary to {summary_path}")
 
+        return {
+            "player_name": player_name,
+            "DND_Class": str(top_row["DND_Class"]),
+            "Weighted_Share": round(top_row["Weighted_Share"], 2),
+            "Top3_Classes": top_classes,
+        }
+
+    # ✅ Case 2: no mapping file — recompute similarity inline as fallback
+    else:
+        print("[WARN] No mapping file found, recomputing similarities inline...")
+        dnd_json_path = BASE_DIR / "backend" / "app" / "data" / "dnd_class.json"
+        with open(dnd_json_path, "r") as f:
+            dnd_data = json.load(f)
+
+        num_cols = df.select_dtypes(include=[np.number]).columns
+        X = df[num_cols].replace([np.inf, -np.inf], np.nan).fillna(0)
+        scaler = StandardScaler()
+        X_scaled = scaler.fit_transform(X)
+
+        class_matrix, class_names = [], []
+        for cname, feats in dnd_data.items():
+            row = [feats.get(c, 0) for c in num_cols]
+            class_matrix.append(row)
+            class_names.append(cname)
+
+        sim = cosine_similarity(X_scaled, np.array(class_matrix))
+        avg_sim = sim.mean(axis=0)
+        best_idx = np.argmax(avg_sim)
+        return {
+            "player_name": player_name,
+            "DND_Class": class_names[best_idx],
+            "Weighted_Share": round(avg_sim[best_idx] / avg_sim.sum() * 100, 2),
+        }
 
 def run_predict_playstyle(player_name: str):
     input_path = DATA_DIR / f"{player_name}_data.csv"
@@ -258,7 +294,7 @@ def run_predict_playstyle(player_name: str):
         combined_summary["player_name"] = player_name_norm
         combined_summary["DND_Class"] = dnd_summary["DND_Class"]
         combined_summary["Weighted_Share"] = dnd_summary["Weighted_Share"]
-
+        main_role = clustered_df["role_str"].value_counts().idxmax() if "role_str" in clustered_df.columns else "N/A"
         if PLAYER_SUMMARY_PATH.exists():
             player_file = pd.read_csv(PLAYER_SUMMARY_PATH)
 
@@ -298,4 +334,5 @@ def run_predict_playstyle(player_name: str):
         "summary_path": str(PLAYER_SUMMARY_PATH),
         "champ_summary": champ_summary,
         "dnd_summary": dnd_summary,
+        "main_role": main_role,
     }

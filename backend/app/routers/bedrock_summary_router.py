@@ -2,7 +2,7 @@
 # bedrock_summarizer_router.py
 # =======================================================
 from fastapi import APIRouter, HTTPException, Query
-from app.services.bedrock_summarizer_service import run_bedrock_summarizer_service
+from backend.app.services.bedrock_summarizer_service import run_bedrock_summarizer_service
 
 router = APIRouter()
 

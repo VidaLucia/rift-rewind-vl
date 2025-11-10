@@ -2,7 +2,7 @@
 # timeline_pipeline_route.py
 # =======================================================
 from fastapi import APIRouter, HTTPException
-from app.services.timeline_pipeline_service import run_timeline_pipeline_service
+from backend.app.services.timeline_pipeline_service import run_timeline_pipeline_service
 
 router = APIRouter()
 

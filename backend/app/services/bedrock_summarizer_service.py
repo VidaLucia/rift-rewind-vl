@@ -1,5 +1,5 @@
 import os
-from scripts.bedrock_summarizer import summarize_summary_file
+from backend.scripts.bedrock_summarizer import summarize_summary_file
 
 def run_bedrock_summarizer_service(region: str, match_id: str, puuid: str, player_class: str = None):
     """

@@ -2,12 +2,12 @@
     "character_info": {
         "character_name": "umbreon#glow's Barbarian",
         "class": "Barbarian",
-        "level": 3,
+        "level": 1,
         "background": "Noble",
         "player_name": "umbreon#glow",
         "race": "Half-Elf",
-        "alignment": "Chaotic Evil",
-        "experience_points": 27
+        "alignment": "Chaotic Neutral",
+        "experience_points": 0
     },
     "abilities": {
         "strength": 15,
@@ -28,9 +28,9 @@
             "acrobatics": false,
             "animal_handling": false,
             "arcana": false,
-            "athletics": false,
+            "athletics": true,
             "deception": false,
-            "history": true,
+            "history": false,
             "insight": false,
             "intimidation": false,
             "investigation": false,
@@ -38,11 +38,11 @@
             "nature": false,
             "perception": false,
             "performance": false,
-            "persuasion": true,
+            "persuasion": false,
             "religion": false,
             "sleight_of_hand": false,
             "stealth": false,
-            "survival": false
+            "survival": true
         }
     },
     "combat": {
@@ -73,19 +73,13 @@
         "flaws": ""
     },
     "equipment": {
-        "armor": [
-            "Traveler\u2019s Cloak"
-        ],
+        "armor": [],
         "weapons": [
             "Greataxe"
         ],
         "gear": [
             "Fine Clothes",
-            "Signet Ring",
-            "War Drum",
-            "Mana Elixir",
-            "Rage Charm",
-            "Ring of Focus"
+            "Signet Ring"
         ],
         "other_proficiencies_languages": [
             "demacia"
@@ -163,35 +157,6 @@
         }
     },
     "metadata": {
-        "created_at": "2025-11-09T04:42:16.860967",
-        "item_log": [
-            {
-                "timestamp": "2025-11-09T04:43:46.146013",
-                "items": [
-                    "War Drum",
-                    "Traveler\u2019s Cloak",
-                    "Mana Elixir"
-                ],
-                "rarity": "rare",
-                "multiplier": 1.25,
-                "type": "guaranteed"
-            },
-            {
-                "timestamp": "2025-11-09T04:43:46.149632",
-                "items": [
-                    "Rage Charm",
-                    "Ring of Focus"
-                ],
-                "rarity": "rare",
-                "multiplier": 1.25,
-                "type": "guaranteed"
-            }
-        ]
-    },
-    "progression": {
-        "games_played": 102,
-        "pity_counter": 102,
-        "experience_points": 27,
-        "level": 3
+        "created_at": "2025-11-09T22:24:41.153393"
     }
 }

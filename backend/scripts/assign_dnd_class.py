@@ -16,7 +16,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "../.."))
 
 # --- Paths ---
 APP_DATA_DIR = os.path.join(PROJECT_ROOT, "backend", "app", "data")
-PLAYER_DIR = os.path.join(PROJECT_ROOT, "data", "players")
+PLAYER_DIR = os.path.join(PROJECT_ROOT, "backend", "app","data", "players")
 
 # Debug info (optional, helps confirm path resolution)
 print(f"[DEBUG] PROJECT_ROOT = {PROJECT_ROOT}")
@@ -84,7 +84,40 @@ def assign_dnd_classes(player_name: str):
     for cname, features in dnd_data.items():
         vec = {feat.lower(): val for feat, val in features.items() if isinstance(val, (int, float))}
         class_vectors[cname] = vec
+    # -------------------------------------------------
+    # STEP 2.5 — Feature Remapping for JSON Compatibility
+    # -------------------------------------------------
+    FEATURE_MAP = {
+        "kills": "ch_kills",
+        "deaths": "ch_deaths",
+        "assists": "ch_assists",
+        "damage": "ch_totalDamageDealtToChampions",
+        "damage_share": "ch_teamDamagePercentage",
+        "cs": "ch_totalMinionsKilled",
+        "vision": "ch_visionScore",
+        "gold": "ch_goldPerMinute",
+        "healing": "ch_totalHealsOnTeammates",
+        "tankiness": "ch_damageTakenOnTeamPercentage",
+        "objectives": "ch_turretTakedowns",
+        "survivability": "ch_survivedSingleDigitHpCount"
+    }
 
+    # Remap feature names to match clustered CSV columns
+    remapped_vectors = {}
+    for cname, featmap in class_vectors.items():
+        new_vec = {}
+        for feat, val in featmap.items():
+            key = FEATURE_MAP.get(feat, feat)  # rename if mapping exists
+            new_vec[key.lower()] = val
+        remapped_vectors[cname] = new_vec
+
+    class_vectors = remapped_vectors
+
+    # Debug check — print overlap rate
+    sample_keys = list(X.columns.str.lower())
+    for cname, feats in list(class_vectors.items())[:3]:
+        overlap = len(set(feats.keys()) & set(sample_keys))
+        print(f"[DEBUG] {cname}: {overlap} overlapping features")
     # -------------------------------------------------
     # STEP 3 — Compute Class Similarities
     # -------------------------------------------------
@@ -196,7 +229,7 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         player_name = sys.argv[1]
     else:
-        player_name = "pyropiller167#na1"  # default for testing
+        player_name = ""  # default for testing
 
     print(f"Running D&D class assignment for {player_name}")
     assign_dnd_classes(player_name)

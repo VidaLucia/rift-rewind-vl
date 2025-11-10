@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from app.services import progression_service
+from backend.app.services import progression_service
 
 router = APIRouter()
 

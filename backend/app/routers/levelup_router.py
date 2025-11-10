@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from app.services import levelup_service
+from backend.app.services import levelup_service
 
 router = APIRouter()
 

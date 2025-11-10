@@ -598,46 +598,10 @@ def detect_momentum(per_player_minute: List[Dict[str, Any]], gold_advantage: Lis
 # =======================================================
 # PLAYER SUMMARY BUILDER (from build_player_summary)
 # =======================================================
-def build_player_summary(full_analysis_path: str, player_id: int = 1, output_path: str = "player_summary.json", puuid: str = None):
-    """
-    Builds and saves a summary for the specified player, automatically injecting
-    their predicted D&D class from cluster_dnd_mapping.csv if available.
-    """
-    from pathlib import Path
-    import csv
-
-    with open(full_analysis_path, "r", encoding="utf-8") as f:
+def build_player_summary(full_analysis_path: str, player_id: int = 1, output_path: str = "player_summary.json"):
+    with open(full_analysis_path, "r") as f:
         data = json.load(f)
 
-    # ==========================================
-    # 🔍 STEP 1: Resolve predicted D&D class
-    # ==========================================
-    predicted_class = "Rogue"  # default fallback
-
-    try:
-        mapping_path = Path(__file__).resolve().parents[2] / "data" / "cluster_dnd_mapping.csv"
-        if mapping_path.exists():
-            import pandas as pd
-            df_map = pd.read_csv(mapping_path)
-            # Try to match by PUUID or participant ID if possible
-            if puuid and "puuid" in df_map.columns:
-                row = df_map[df_map["puuid"] == puuid]
-                if not row.empty:
-                    predicted_class = row.iloc[0]["class"]
-            elif "player_name" in df_map.columns:
-                # fallback if mapping file uses player_name instead
-                player_name = os.path.basename(output_path).split("_player_")[0]
-                row = df_map[df_map["player_name"].str.contains(player_name, case=False, na=False)]
-                if not row.empty:
-                    predicted_class = row.iloc[0]["class"]
-    except Exception as e:
-        print(f"[Warning] Could not read class mapping: {e}")
-
-    print(f"[Summary] Using predicted D&D class → {predicted_class}")
-
-    # ==========================================
-    # 🔢 STEP 2: Aggregate lane stats
-    # ==========================================
     lane_stats = [
         {
             "minute": p["minute"],
@@ -660,9 +624,6 @@ def build_player_summary(full_analysis_path: str, player_id: int = 1, output_pat
     lane_adv_10 = next((p["gold_diff_vs_lane"] for p in lane_stats if p["minute"] == 10), None)
     cs_adv_10 = next((p["cs_diff_vs_lane"] for p in lane_stats if p["minute"] == 10), None)
 
-    # ==========================================
-    # ⚔️ STEP 3: Objectives & Momentum
-    # ==========================================
     relevant_objectives = [
         {
             "minute": round(o["timestamp"] / 60000, 1),
@@ -684,13 +645,10 @@ def build_player_summary(full_analysis_path: str, player_id: int = 1, output_pat
     deaths = sum(p["deaths"] for p in lane_stats)
     assists = sum(p["assists"] for p in lane_stats)
 
-    # ==========================================
-    # 🧠 STEP 4: Final summary with dynamic class
-    # ==========================================
     summary = {
         "match_id": data.get("matchId", "unknown"),
         "player_id": player_id,
-        "class": predicted_class,  
+        "class": "Fighter",   # Replace later with D&D mapping
         "lane": lane_index,
         "totals": {"kills": kills, "deaths": deaths, "assists": assists},
         "lane_summary": {
@@ -707,9 +665,10 @@ def build_player_summary(full_analysis_path: str, player_id: int = 1, output_pat
         "momentum": momentum
     }
 
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(summary, f, indent=2, ensure_ascii=False)
+    with open(output_path, "w") as f:
+        json.dump(summary, f, indent=2)
     print(f"[Summary]  Saved player {player_id} summary → {output_path}")
+
 
 # =======================================================
 # MAIN ENTRY POINT

@@ -1,10 +1,7 @@
 from fastapi import APIRouter, HTTPException
-from app.utils.sanitize import sanitize_nans
-
-
-from app.services import (
+from backend.app.utils.sanitize import sanitize_nans
+from backend.app.services import (
     predict_service,
-    class_mapping_service,
     character_sheet_service,
 )
 
@@ -15,26 +12,22 @@ router = APIRouter()
 def predict_player_class(player_name: str):
     """
     Runs the full player pipeline:
-    Predicts clusters
-    Assigns D&D classes
-    Generates the character sheet
+    1. Predict clusters and compute inline D&D class mapping
+    2. Generate the D&D character sheet
     """
     try:
-        # Step 1 — Predict clusters
+        print(f"[INFO] Starting pipeline for {player_name}")
+
+        # Step 1 — Predict + Inline D&D Mapping
         predict_result = predict_service.predict_player(player_name)
-        # Step 2 — D&D mapping
-        mapping_result = class_mapping_service.run_class_mapping(player_name)
-        # Step 3 — Generate character sheet (only if mapping succeeded)
-        if mapping_result["status"] == "success":
-            sheet_result = character_sheet_service.run_sheet_generation(player_name)
-        else:
-            sheet_result = {"status": "skipped", "message": "D&D mapping failed"}
+
+        # Step 2 — Generate character sheet
+        sheet_result = character_sheet_service.run_sheet_generation(player_name)
 
         return sanitize_nans({
             "status": "success",
             "player": player_name,
             "prediction_output": predict_result,
-            "dnd_class_mapping": mapping_result,
             "character_sheet": sheet_result
         })
 
