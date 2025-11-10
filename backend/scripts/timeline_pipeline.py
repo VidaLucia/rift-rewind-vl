@@ -33,28 +33,25 @@ async def grab_timeline(region: str, match_id: str, puuid: str):
 
     print(f"[Grabber]  Saved timeline to {raw_path}")
 
-    # --- Run analysis ---
-    result = analyze_timeline(timeline)
+    # --- Run analysis (pass puuid) ---
+    result = analyze_timeline(timeline, puuid=puuid)
     analyzed_path = os.path.join(DATA_DIR, f"{match_id}_analyzed.json")
     with open(analyzed_path, "w") as f:
         json.dump(result, f, indent=2)
     print(f"[Analyzer]  Saved analyzed data to {analyzed_path}")
 
-    # --- Generate per-player summaries (1–10) ---
+    # --- Generate per-player summaries ---
     participants = timeline["info"]["participants"]
     pid_map = {p["puuid"]: p["participantId"] for p in participants}
     player_id = pid_map.get(puuid)
-
     if not player_id:
         print(f"[Warning] PUUID {puuid} not found in match participants.")
-        return
+        return result
 
     out_path = os.path.join(DATA_DIR, f"{match_id}_player_{puuid}_summary.json")
     build_player_summary(analyzed_path, player_id=player_id, output_path=out_path)
     print(f"[Pipeline]  Completed full pipeline for match {match_id}")
     return result
-
-
 # =======================================================
 # ANALYZER (from timeline_analyzer.py)
 # =======================================================

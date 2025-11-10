@@ -35,10 +35,10 @@ export default function MatchCard({ match, region, puuid, playerClass }) {   // 
 
     try {
       setLoading(true);
-      console.log(`[DEBUG] Running timeline + Bedrock with class: ${playerClass}`); // ✅ Debug print
+      console.log(`[DEBUG] Running timeline + Bedrock with class: ${playerClass}`); 
 
       const timelineRes = await runTimelinePipeline(region, match.match_id, puuid);
-      const bedrockRes = await summarizeWithBedrock(region, match.match_id, puuid, playerClass || "Rogue");  // ✅ use prop instead of class keyword
+      const bedrockRes = await summarizeWithBedrock(region, match.match_id, puuid, playerClass || "Rogue");  
 
       setTimelineSummary(timelineRes.data);
       setBedrockSummary(bedrockRes.data);
@@ -108,28 +108,64 @@ export default function MatchCard({ match, region, puuid, playerClass }) {   // 
                     {(() => {
                       try {
                         const t = timelineSummary.result || timelineSummary;
-                        const soloKills = t.solo_kills?.length || 0;
-                        const teamfights = t.teamfights?.length || 0;
-                        const lane = t.lane_advantage || {};
-                        const goldDiff10 = lane.gold_diff_10 ?? 0;
-                        const csDiff10 = lane.cs_diff_10 ?? 0;
-                        const xpDiff10 = lane.xp_diff_10 ?? 0;
-                        const objs = t.objectives || [];
-                        const dragons = objs.filter(o => o.monsterType === "DRAGON" || o.type === "DRAGON").length;
-                        const heralds = objs.filter(o => o.monsterType === "RIFTHERALD" || o.type === "RIFTHERALD").length;
-                        const barons = objs.filter(o => o.monsterType === "BARON_NASHOR" || o.type === "BARON_NASHOR").length;
-                        const towers = objs.filter(o => o.monsterType === "TOWER_BUILDING" || o.type === "TOWER_BUILDING").length;
+
+                        // --- Handle solo kills & teamfights safely ---
+                        const soloKills = Array.isArray(t.solo_kills)
+                          ? t.solo_kills.length
+                          : t.soloKills ?? 0;
+
+                        const teamfights = Array.isArray(t.teamfights)
+                          ? t.teamfights.length
+                          : t.teamfights_count ?? 0;
+
+                        // --- Lane advantage snapshot (minute 10) ---
+                        const lane = t.lane_advantage || t.lane || {};
+                        const goldDiff10 = Number(
+                          lane.gold_diff_10 ?? lane.goldDiff10 ?? lane.goldAt10 ?? 0
+                        );
+                        const csDiff10 = Number(
+                          lane.cs_diff_10 ?? lane.csDiff10 ?? lane.csAt10 ?? 0
+                        );
+                        const xpDiff10 = Number(
+                          lane.xp_diff_10 ?? lane.xpDiff10 ?? lane.xpAt10 ?? 0
+                        );
+
+                        // --- Objective counts ---
+                        const objs = Array.isArray(t.objectives) ? t.objectives : [];
+                        const dragons = objs.filter(
+                          (o) => /DRAGON/i.test(o.monsterType || o.type || "")
+                        ).length;
+                        const heralds = objs.filter(
+                          (o) => /RIFT.?HERALD/i.test(o.monsterType || o.type || "")
+                        ).length;
+                        const barons = objs.filter(
+                          (o) => /BARON/i.test(o.monsterType || o.type || "")
+                        ).length;
+                        const towers = objs.filter(
+                          (o) => /TOWER/i.test(o.monsterType || o.type || "")
+                        ).length;
+
+                        // --- Momentum / comebacks ---
                         const momentum = t.momentum || {};
-                        const laneSwings = momentum.lane_swings?.length || 0;
-                        const teamSwings = momentum.team_swings?.length || 0;
+                        const laneSwings = Array.isArray(momentum.lane_swings)
+                          ? momentum.lane_swings.length
+                          : 0;
+                        const teamSwings = Array.isArray(momentum.team_swings)
+                          ? momentum.team_swings.length
+                          : 0;
                         const hadComeback = teamSwings > 0 || laneSwings > 0;
 
                         return (
                           <>
-                            {soloKills} solo kill{soloKills !== 1 ? "s" : ""} and {teamfights} teamfight{teamfights !== 1 ? "s" : ""} detected.{"\n"}
-                            Advantage at 10 min: {goldDiff10 >= 0 ? "+" : ""}{goldDiff10} gold,{" "}
-                            {csDiff10 >= 0 ? "+" : ""}{csDiff10} CS, {xpDiff10 >= 0 ? "+" : ""}{xpDiff10} XP.{"\n"}
-                            Objectives secured: {dragons} dragon{dragons !== 1 ? "s" : ""}, {heralds} herald{heralds !== 1 ? "s" : ""}, {barons} baron{barons !== 1 ? "s" : ""}, {towers} tower{towers !== 1 ? "s" : ""}.{"\n"}
+                            {soloKills} solo kill{soloKills !== 1 ? "s" : ""} and {teamfights} teamfight
+                            {teamfights !== 1 ? "s" : ""} detected.{"\n"}
+                            Advantage at 10 min: {goldDiff10 >= 0 ? "+" : ""}
+                            {goldDiff10} gold, {csDiff10 >= 0 ? "+" : ""}
+                            {csDiff10} CS, {xpDiff10 >= 0 ? "+" : ""}
+                            {xpDiff10} XP.{"\n"}
+                            Objectives secured: {dragons} dragon{dragons !== 1 ? "s" : ""}, {heralds} herald
+                            {heralds !== 1 ? "s" : ""}, {barons} baron{barons !== 1 ? "s" : ""}, {towers} tower
+                            {towers !== 1 ? "s" : ""}.{"\n"}
                             {hadComeback
                               ? `${teamSwings + laneSwings} major momentum swing${teamSwings + laneSwings !== 1 ? "s" : ""}.`
                               : "Stable game with no major comebacks."}

@@ -18,10 +18,6 @@ PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "../.."))
 APP_DATA_DIR = os.path.join(PROJECT_ROOT, "backend", "app", "data")
 PLAYER_DIR = os.path.join(PROJECT_ROOT, "backend", "app","data", "players")
 
-# Debug info (optional, helps confirm path resolution)
-print(f"[DEBUG] PROJECT_ROOT = {PROJECT_ROOT}")
-print(f"[DEBUG] APP_DATA_DIR = {APP_DATA_DIR}")
-print(f"[DEBUG] PLAYER_DIR   = {PLAYER_DIR}")
 def assign_dnd_classes(player_name: str):
     """
     Given a player's clustered match data, compute D&D class mapping and weighted summary.

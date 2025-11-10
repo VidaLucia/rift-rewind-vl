@@ -9,7 +9,7 @@ PLAYER_DIR = BASE_DIR / "data" / "players"
 # Force absolute interpreter path
 VENV_PYTHON = str(BASE_DIR.parent / ".venv" / "Scripts" / "python.exe")
 
-def find_and_export_player(region: str, summoner_name: str, tag: str, max_matches: int = 200):
+def find_and_export_player(region: str, summoner_name: str, tag: str, max_matches: int = 100):
     """
     Run player_finder.py using the venv's Python (so aiohttp exists).
     """
@@ -26,9 +26,6 @@ def find_and_export_player(region: str, summoner_name: str, tag: str, max_matche
             str(max_matches)
         ]
 
-        print(f"[DEBUG] Running subprocess with: {cmd}")
-        print(f"[DEBUG] Expected interpreter: {VENV_PYTHON}")
-        print(f"[DEBUG] REGION = {region}")
         result = subprocess.run(
             cmd,
             capture_output=True,

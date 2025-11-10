@@ -1,50 +1,106 @@
-# Python
+# =====================================
+# PYTHON / BACKEND
+# =====================================
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
 
-# Virtual environment
+# Virtual environments
 .venv/
-env/
 venv/
+env/
+ENV/
 
-# IDE / Editor
-.vscode/
+# Compiled extensions
+*.pyd
+*.so
+*.dll
 
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Environment files
-.env
-*.secret
-*.key
-
-# Logs
+# Byte-compiled / cache / logs
 *.log
+*.out
+*.tmp
 
-# Packaging
-*.egg-info/
-dist/
+# Build artifacts
 build/
-outdated/*
-backend/models/*
-# DB
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Local database / data caches
+*.db
+*.sqlite
+*.sqlite3
 riot_data.db
 normalized_matches.csv
 players_matches.json
-*.db
-*.csv
-/data/*
-/models/*
-debug.py
-# progress
 progress.json
 
-# Stuff that was relevant but is no longer
-k_means.ipynb
-k_means2.ipynb
-predict_cluster2.py
-predict_cluster3.py
+# Model artifacts (keep large binaries out of repo)
+backend/models/*
+models/*
+!backend/models/README.md   # optional: keep a readme explaining model usage
+
+# Player / generated data
+backend/app/data/players/*
+backend/app/data/populated/*
+backend/app/data/player_class_summary.csv
+/data/*
+
+# Outdated or legacy experiment folders
+outdated/*
+
+# =====================================
+# FRONTEND (React / Vite)
+# =====================================
+node_modules/
+dist/
+build/
+*.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+.cache/
+coverage/
+
+# Vite / React build outputs
+*.local
+*.tsbuildinfo
+
+# =====================================
+# ENVIRONMENT & SECURITY
+# =====================================
+.env
+.env.*
+*.secret
+*.key
+*.pem
+
+# =====================================
+# EDITORS / OS FILES
+# =====================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# =====================================
+# MISCELLANEOUS / DEBUG
+# =====================================
+debug.py
+# old notebooks / experimental scripts
+k_means*.ipynb
+predict_cluster*.py
+
+# =====================================
+# WHITELIST
+# =====================================
+!*.example.env
+!requirements.txt
+!package.json
+!package-lock.json
+!vite.config.*
+!README.md

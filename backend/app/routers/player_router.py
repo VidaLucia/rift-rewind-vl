@@ -26,12 +26,12 @@ async def find_player(req: PlayerRequest):
     if result["status"] == "error":
         raise HTTPException(status_code=500, detail=result["message"])
 
-    # ✅ Extract PUUID from the log (since player_finder prints it)
+    #  Extract PUUID from the log (since player_finder prints it)
     log_text = result.get("log", "")
     puuid_match = re.search(r"PUUID for .*?: ([A-Za-z0-9\-_]+)", log_text)
     puuid = puuid_match.group(1) if puuid_match else None
 
-    # ✅ Add the PUUID into the response payload
+    #  Add the PUUID into the response payload
     return {
         **result,
         "puuid": puuid,

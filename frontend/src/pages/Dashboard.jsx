@@ -17,7 +17,7 @@ import {
 import MatchCard from "../components/MatchCard";
 
 export default function Dashboard() {
-  const [playerName, setPlayerName] = useState("umbreon#glow");
+  const [playerName, setPlayerName] = useState("vida#lucia");
   const [region, setRegion] = useState("na1");
   const [matchId, setMatchId] = useState("");
   const [puuid, setPuuid] = useState("");
@@ -400,7 +400,7 @@ export default function Dashboard() {
       </motion.section>
 
       {/* === Console Output === */}
-      <motion.section
+      {/*<motion.section
         className="max-w-6xl mx-auto mt-10 p-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-xl"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -412,6 +412,7 @@ export default function Dashboard() {
           {output || "No output yet."}
         </pre>
       </motion.section>
+      */}
     </div>
   );
 }
