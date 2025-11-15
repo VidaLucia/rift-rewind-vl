@@ -14,7 +14,7 @@ A machine learning–driven coaching agent that analyzes **League of Legends** m
 - **AWS Services:** Bedrock (LLM), SageMaker (training and inference)  
 - **Core Libraries:** Python, Pandas, HDBSCAN, UMAP, FastAPI, React  
 ## API Key
-- Add your api KEY into the .venv
+- Add your api KEY into the .env
 ##  Run Locally
 ```bash
 # Backend
